@@ -145,11 +145,11 @@ UnrealBuildCookRunParameters createBuildCookRunParameters() {
 
 def buildCookRun(UnrealBuildCookRunParameters parameters) {
     String buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '\\Engine\\Build\\BatchFiles\\RunUAT.bat';
-    
+
     List<String> UATParameters = [];
     parameters.addParameters(UATParameters);
 
-    String command = parameters.enginePath + buildScript + ' ' + UATParameters.join(' ');
+    String command = parameters.enginePath + buildScript + ' BuildCookRun ' + UATParameters.join(' ');
 
     echo "Running UAT command: " + command;
 
