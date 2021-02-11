@@ -173,11 +173,15 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     }
 }
 
+class UnrealBuildCookRunResult {
+    public String DeployPath;
+}
+
 UnrealBuildCookRunParameters createBuildCookRunParameters() {
     return new UnrealBuildCookRunParameters();
 }
 
-def buildCookRun(UnrealBuildCookRunParameters parameters) {
+UnrealBuildCookRunResult buildCookRun(UnrealBuildCookRunParameters parameters) {
     String buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '\\Engine\\Build\\BatchFiles\\RunUAT.bat';
 
     List<String> UATParameters = [];
@@ -185,13 +189,17 @@ def buildCookRun(UnrealBuildCookRunParameters parameters) {
 
     String command = parameters.enginePath + buildScript + ' BuildCookRun ' + UATParameters.join(' ');
 
-    echo "Running UAT command: " + command;
-
     if (isUnix()) {
         sh(command);
     } else {
         bat(command);
     }
+
+    String noEditorPath = (parameters.targetPlatform.startsWith('Win') ? 'Windows' : parameters.targetPlatform) + 'NoEditor';
+
+    UnrealBuildCookRunResult result = new UnrealBuildCookRunResult();
+    result.DeployPath = parameters.archiveDirectory + '/' + noEditorPath;
+    return result;
 }
 
 return this;
