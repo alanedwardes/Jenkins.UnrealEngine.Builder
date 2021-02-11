@@ -94,22 +94,22 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     public UnrealBuildCookRunParameters project(String project) { this.project = project; return this; }
     public String project;
 
-    public UnrealBuildCookRunParameters scriptsForProject(String project) { this.scriptsForProject = scriptsForProject; return this; }
+    public UnrealBuildCookRunParameters scriptsForProject(String scriptsForProject) { this.scriptsForProject = scriptsForProject; return this; }
     public String scriptsForProject;
     /**
     * Directory to archive the client to
     */
-    public UnrealBuildCookRunParameters archiveDirectory(String project) { this.archiveDirectory = archiveDirectory; return this; }
+    public UnrealBuildCookRunParameters archiveDirectory(String archiveDirectory) { this.archiveDirectory = archiveDirectory; return this; }
     public String archiveDirectory;
     /**
     * Determines if the build is going to use cooked data
     */
-    public UnrealBuildCookRunParameters shouldCook(Boolean project) { this.shouldCook = shouldCook; return this; }
+    public UnrealBuildCookRunParameters shouldCook(Boolean shouldCook) { this.shouldCook = shouldCook; return this; }
     public Boolean shouldCook;
     /**
     * Put this build in a stage directory
     */
-    public UnrealBuildCookRunParameters shouldStage(Boolean project) { this.shouldStage = shouldStage; return this; }
+    public UnrealBuildCookRunParameters shouldStage(Boolean shouldStage) { this.shouldStage = shouldStage; return this; }
     public Boolean shouldStage;
     /**
     * Put this build in an archive directory
@@ -139,12 +139,12 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * Should use packfiles
     */
-    public UnrealBuildCookRunParameters usePak(Boolean skipCookingEditorContent) { this.usePak = usePak; return this; }
+    public UnrealBuildCookRunParameters usePak(Boolean usePak) { this.usePak = usePak; return this; }
     public Boolean usePak;
     /**
     * The Unreal Engine 4 executable to use
     */
-    public UnrealBuildCookRunParameters executable(String skipCookingEditorContent) { this.executable = executable; return this; }
+    public UnrealBuildCookRunParameters executable(String executable) { this.executable = executable; return this; }
     public String executable;
 
     public UnrealBuildCookRunParameters noCompileEditor(String noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
