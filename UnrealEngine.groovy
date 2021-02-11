@@ -7,17 +7,17 @@ class UnrealBuildToolGlobalOptions {
     /**
     * The amount of detail to write to the log
     */
-    public UnrealBuildToolGlobalOptions verbose(String verbose) { this.verbose = verbose; return this; }
+    public UnrealBuildToolGlobalOptions verbose(Boolean verbose) { this.verbose = verbose; return this; }
     public Boolean verbose;
     /**
     * The amount of detail to write to the log
     */
-    public UnrealBuildToolGlobalOptions veryVerbose(String verbose) { this.veryVerbose = veryVerbose; return this; }
+    public UnrealBuildToolGlobalOptions veryVerbose(Boolean veryVerbose) { this.veryVerbose = veryVerbose; return this; }
     public Boolean veryVerbose;
     /**
     * Disables Perforce functionality (default if not run on a build machine)
     */
-    public UnrealBuildToolGlobalOptions noPerforce(String noPerforce) { this.noPerforce = noPerforce; return this; }
+    public UnrealBuildToolGlobalOptions noPerforce(Boolean noPerforce) { this.noPerforce = noPerforce; return this; }
     public Boolean noPerforce;
     /**
     * Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
@@ -27,27 +27,27 @@ class UnrealBuildToolGlobalOptions {
     /**
     * Whether to include timestamps in the log
     */
-    public UnrealBuildToolGlobalOptions logTimestamps(String logTimestamps) { this.logTimestamps = logTimestamps; return this; }
+    public UnrealBuildToolGlobalOptions logTimestamps(Boolean logTimestamps) { this.logTimestamps = logTimestamps; return this; }
     public Boolean logTimestamps;
     /**
     * Whether to format messages in MsBuild format
     */
-    public UnrealBuildToolGlobalOptions logFromMsBuild(String logFromMsBuild) { this.logFromMsBuild = logFromMsBuild; return this; }
+    public UnrealBuildToolGlobalOptions logFromMsBuild(Boolean logFromMsBuild) { this.logFromMsBuild = logFromMsBuild; return this; }
     public Boolean logFromMsBuild;
     /**
     * Whether to write progress markup in a format that can be parsed by other programs
     */
-    public UnrealBuildToolGlobalOptions writeProgressMarkup(String writeProgressMarkup) { this.writeProgressMarkup = writeProgressMarkup; return this; }
+    public UnrealBuildToolGlobalOptions writeProgressMarkup(Boolean writeProgressMarkup) { this.writeProgressMarkup = writeProgressMarkup; return this; }
     public Boolean writeProgressMarkup;
     /**
     * Whether to ignore the mutex
     */
-    public UnrealBuildToolGlobalOptions noMutex(String noMutex) { this.noMutex = noMutex; return this; }
+    public UnrealBuildToolGlobalOptions noMutex(Boolean noMutex) { this.noMutex = noMutex; return this; }
     public Boolean noMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
-    public UnrealBuildToolGlobalOptions waitMutex(String waitMutex) { this.waitMutex = waitMutex; return this; }
+    public UnrealBuildToolGlobalOptions waitMutex(Boolean waitMutex) { this.waitMutex = waitMutex; return this; }
     public Boolean waitMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
@@ -104,42 +104,42 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * Determines if the build is going to use cooked data
     */
-    public UnrealBuildCookRunParameters shouldCook(String project) { this.shouldCook = shouldCook; return this; }
+    public UnrealBuildCookRunParameters shouldCook(Boolean project) { this.shouldCook = shouldCook; return this; }
     public Boolean shouldCook;
     /**
     * Put this build in a stage directory
     */
-    public UnrealBuildCookRunParameters shouldStage(String project) { this.shouldStage = shouldStage; return this; }
+    public UnrealBuildCookRunParameters shouldStage(Boolean project) { this.shouldStage = shouldStage; return this; }
     public Boolean shouldStage;
     /**
     * Put this build in an archive directory
     */
-    public UnrealBuildCookRunParameters shouldArchive(String shouldArchive) { this.shouldArchive = shouldArchive; return this; }
+    public UnrealBuildCookRunParameters shouldArchive(Boolean shouldArchive) { this.shouldArchive = shouldArchive; return this; }
     public Boolean shouldArchive;
     /**
     * Package for distribution of the project
     */
-    public UnrealBuildCookRunParameters forDistribution(String forDistribution) { this.forDistribution = forDistribution; return this; }
+    public UnrealBuildCookRunParameters forDistribution(Boolean forDistribution) { this.forDistribution = forDistribution; return this; }
     public Boolean forDistribution;
     /**
     * If build step should be executed
     */
-    public UnrealBuildCookRunParameters shouldBuild(String shouldBuild) { this.shouldBuild = shouldBuild; return this; }
+    public UnrealBuildCookRunParameters shouldBuild(Boolean shouldBuild) { this.shouldBuild = shouldBuild; return this; }
     public Boolean shouldBuild;
     /**
     * Package the project for the target platform
     */
-    public UnrealBuildCookRunParameters shouldPackage(String shouldPackage) { this.shouldPackage = shouldPackage; return this; }
+    public UnrealBuildCookRunParameters shouldPackage(Boolean shouldPackage) { this.shouldPackage = shouldPackage; return this; }
     public Boolean shouldPackage;
     /**
     * Skips content under /Engine/Editor when cooking
     */
-    public UnrealBuildCookRunParameters skipCookingEditorContent(String skipCookingEditorContent) { this.skipCookingEditorContent = skipCookingEditorContent; return this; }
+    public UnrealBuildCookRunParameters skipCookingEditorContent(Boolean skipCookingEditorContent) { this.skipCookingEditorContent = skipCookingEditorContent; return this; }
     public Boolean skipCookingEditorContent;
     /**
     * Should use packfiles
     */
-    public UnrealBuildCookRunParameters usePak(String skipCookingEditorContent) { this.usePak = usePak; return this; }
+    public UnrealBuildCookRunParameters usePak(Boolean skipCookingEditorContent) { this.usePak = usePak; return this; }
     public Boolean usePak;
     /**
     * The Unreal Engine 4 executable to use
