@@ -88,7 +88,7 @@ class UnrealBuildToolGlobalOptions {
     }
 }
 
-class UnrealBuildCookRunParameters implements UnrealBuildToolGlobalOptions {
+class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * List of client configurations
     */
