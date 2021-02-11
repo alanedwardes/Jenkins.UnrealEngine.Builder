@@ -45,6 +45,9 @@ class UnrealBuildToolGlobalOptions {
     */
     public String remoteIni;
 
+    /**
+    * Add the parameters to the specified list.
+    */
     public def addParameters(List<String> parameters) {
         if (verbose) {
             parameters.add('-verbose');
@@ -133,11 +136,20 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * Package the project for the target platform
     */
-    public Boolean testpackage;
+    public Boolean 'package';
     /**
     * Skips content under /Engine/Editor when cooking
     */
     public Boolean skipCookingEditorContent;
+
+    /**
+    * Add the parameters to the specified list.
+    */
+    public def addParameters(List<String> parameters) {
+        super.addParameters(parameters);
+
+        parameters.add('-clientconfig=' + clientConfig);
+    }
 }
 
 UnrealBuildCookRunParameters createBuildCookRunParameters() {
@@ -148,8 +160,6 @@ def buildCookRun(UnrealBuildCookRunParameters parameters) {
     List<String> UATParameters = [];
 
     parameters.addParameters(UATParameters);
-
-    echo UATParameters.size();
 
     UATParameters.each { Parameter ->
         echo "Hello ${Parameter}"
