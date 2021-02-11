@@ -59,16 +59,16 @@ class UnrealBuildToolGlobalOptions {
     * Add the parameters to the specified list.
     */
     public def addParameters(List<String> parameters) {
-        if (verbose) parameters.add('-Verbose');
-        if (veryVerbose) parameters.add('-VeryVerbose');
-        if (noPerforce) parameters.add('-NoP4');
-        if (logFileName) parameters.add('-Log=' + logFileName);
-        if (logTimestamps) parameters.add('-Timestamps');
-        if (logFromMsBuild) parameters.add('-FromMsBuild');
-        if (writeProgressMarkup) parameters.add('-Progress');
-        if (noMutex) parameters.add('-NoMutex');
-        if (waitMutex) parameters.add('-WaitMutex');
-        if (remoteIni) parameters.add('-RemoteIni');
+        if (this.verbose) parameters.add('-Verbose');
+        if (this.veryVerbose) parameters.add('-VeryVerbose');
+        if (this.noPerforce) parameters.add('-NoP4');
+        if (this.logFileName) parameters.add('-Log=' + logFileName);
+        if (this.logTimestamps) parameters.add('-Timestamps');
+        if (this.logFromMsBuild) parameters.add('-FromMsBuild');
+        if (this.writeProgressMarkup) parameters.add('-Progress');
+        if (this.noMutex) parameters.add('-NoMutex');
+        if (this.waitMutex) parameters.add('-WaitMutex');
+        if (this.remoteIni) parameters.add('-RemoteIni');
     }
 }
 
@@ -155,21 +155,21 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     */
     public def addParameters(List<String> parameters) {
         super.addParameters(parameters);
-        if (clientConfig) parameters.add('-ClientConfig=' + clientConfig);
-        if (targetPlatform) parameters.add('-TargetPlatform=' + targetPlatform);
-        if (project) parameters.add('-Project=' + project);
-        if (scriptsForProject) parameters.add('-ScriptsForProject=' + scriptsForProject);
-        if (archiveDirectory) parameters.add('-ArchiveDirectory=' + archiveDirectory);
-        if (shouldCook) parameters.add('-Cook');
-        if (shouldStage) parameters.add('-Stage');
-        if (shouldArchive) parameters.add('-Archive');
-        if (forDistribution) parameters.add('-Distribution');
-        if (shouldBuild) parameters.add('-Build');
-        if (shouldPackage) parameters.add('-Package');
-        if (skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
-        if (usePak) parameters.add('-Pak');
-        if (executable) parameters.add('-UE4exe=' + executable);
-        if (noCompileEditor) parameters.add('-NoCompileEditor');
+        if (this.clientConfig) parameters.add('-ClientConfig=' + clientConfig);
+        if (this.targetPlatform) parameters.add('-TargetPlatform=' + targetPlatform);
+        if (this.project) parameters.add('-Project=' + project);
+        if (this.scriptsForProject) parameters.add('-ScriptsForProject=' + scriptsForProject);
+        if (this.archiveDirectory) parameters.add('-ArchiveDirectory=' + archiveDirectory);
+        if (this.shouldCook) parameters.add('-Cook');
+        if (this.shouldStage) parameters.add('-Stage');
+        if (this.shouldArchive) parameters.add('-Archive');
+        if (this.forDistribution) parameters.add('-Distribution');
+        if (this.shouldBuild) parameters.add('-Build');
+        if (this.shouldPackage) parameters.add('-Package');
+        if (this.skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
+        if (this.usePak) parameters.add('-Pak');
+        if (this.executable) parameters.add('-UE4exe=' + executable);
+        if (this.noCompileEditor) parameters.add('-NoCompileEditor');
     }
 }
 
