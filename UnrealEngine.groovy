@@ -46,43 +46,43 @@ class UnrealBuildToolGlobalOptions {
     public String remoteIni;
 
     public def addParameters(List<String> parameters) {
-        if (parameters.verbose) {
+        if (verbose) {
             parameters.add('-verbose');
         }
 
-        if (parameters.veryVerbose) {
+        if (veryVerbose) {
             parameters.add('-veryverbose');
         }
 
-        if (parameters.noPerforce) {
+        if (noPerforce) {
             parameters.add('-nop4');
         }
 
-        if (parameters.logFileName) {
+        if (logFileName) {
             parameters.add('-logFileName=' + parameters.LogFileName);
         }
 
-        if (parameters.logTimestamps) {
+        if (logTimestamps) {
             parameters.add('-logtimestamps');
         }
 
-        if (parameters.logFromMsBuild) {
+        if (logFromMsBuild) {
             parameters.add('-logfrommsbuild');
         }
 
-        if (parameters.writeProgressMarkup) {
+        if (writeProgressMarkup) {
             parameters.add('-writeprogressmarkup');
         }
 
-        if (parameters.noMutex) {
+        if (noMutex) {
             parameters.add('-nomutex');
         }
 
-        if (parameters.waitMutex) {
+        if (waitMutex) {
             parameters.add('-waitmutex');
         }
 
-        if (parameters.writeProgressMarkup) {
+        if (writeProgressMarkup) {
             parameters.add('-writeprogressmarkup');
         }
     }
