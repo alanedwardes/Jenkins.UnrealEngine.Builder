@@ -116,6 +116,10 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     * Should use packfiles
     */
     public Boolean usePak;
+    /**
+    * The Unreal Engine 4 executable to use
+    */
+    public String executable;
 
     /**
     * Add the parameters to the specified list.
@@ -136,6 +140,7 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
         if (shouldPackage) parameters.add('-package');
         if (skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
         if (usePak) parameters.add('-pak');
+        if (executable) parameters.add('-ue4exe=' + executable);
     }
 }
 
