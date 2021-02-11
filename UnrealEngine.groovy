@@ -1,12 +1,3 @@
-enum UnrealClientConfig {
-    Unknown,
-    Debug,
-    Shipping,
-    Test,
-    Development,
-    DebugGame
-}
-
 class UnrealBuildToolGlobalOptions {
     /**
     * The path to unreal engine
@@ -68,9 +59,14 @@ class UnrealBuildToolGlobalOptions {
 
 class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
-    * List of client configurations
+    * List of client configurations:
+       * Debug
+       * Shipping
+       * Test
+       * Development
+       * DebugGame
     */
-    public UnrealClientConfig clientConfig = UnrealClientConfig.Unknown;
+    public String clientConfig;
     /**
     * Sets platforms to build for non-dedicated servers
     */
@@ -116,6 +112,10 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     * Skips content under /Engine/Editor when cooking
     */
     public Boolean skipCookingEditorContent;
+    /**
+    * Should use packfiles
+    */
+    public Boolean usePak;
 
     /**
     * Add the parameters to the specified list.
