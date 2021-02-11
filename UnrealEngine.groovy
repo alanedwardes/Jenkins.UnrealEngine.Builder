@@ -9,6 +9,10 @@ enum UnrealClientConfig {
 
 class UnrealBuildToolGlobalOptions {
     /**
+    * The path to unreal engine
+    */
+    public String enginePath;
+    /**
     * The amount of detail to write to the log
     */
     public Boolean verbose;
@@ -49,45 +53,16 @@ class UnrealBuildToolGlobalOptions {
     * Add the parameters to the specified list.
     */
     public def addParameters(List<String> parameters) {
-        if (verbose) {
-            parameters.add('-verbose');
-        }
-
-        if (veryVerbose) {
-            parameters.add('-veryverbose');
-        }
-
-        if (noPerforce) {
-            parameters.add('-nop4');
-        }
-
-        if (logFileName) {
-            parameters.add('-logFileName=' + parameters.LogFileName);
-        }
-
-        if (logTimestamps) {
-            parameters.add('-logtimestamps');
-        }
-
-        if (logFromMsBuild) {
-            parameters.add('-logfrommsbuild');
-        }
-
-        if (writeProgressMarkup) {
-            parameters.add('-writeprogressmarkup');
-        }
-
-        if (noMutex) {
-            parameters.add('-nomutex');
-        }
-
-        if (waitMutex) {
-            parameters.add('-waitmutex');
-        }
-
-        if (writeProgressMarkup) {
-            parameters.add('-writeprogressmarkup');
-        }
+        if (verbose) parameters.add('-verbose');
+        if (veryVerbose) parameters.add('-veryverbose');
+        if (noPerforce) parameters.add('-nop4');
+        if (logFileName) parameters.add('-logFileName=' + parameters.LogFileName);
+        if (logTimestamps) parameters.add('-logtimestamps');
+        if (logFromMsBuild) parameters.add('-logfrommsbuild');
+        if (writeProgressMarkup) parameters.add('-writeprogressmarkup');
+        if (noMutex) parameters.add('-nomutex');
+        if (waitMutex) parameters.add('-waitmutex');
+        if (writeProgressMarkup) parameters.add('-writeprogressmarkup');
     }
 }
 
@@ -95,7 +70,7 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * List of client configurations
     */
-    public UnrealClientConfig clientConfig;
+    public UnrealClientConfig clientConfig = UnrealClientConfig.Unknown;
     /**
     * Sets platforms to build for non-dedicated servers
     */
@@ -116,23 +91,23 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * Determines if the build is going to use cooked data
     */
-    public Boolean cook;
+    public Boolean shouldCook;
     /**
     * Put this build in a stage directory
     */
-    public Boolean stage;
+    public Boolean shouldStage;
     /**
     * Put this build in an archive directory
     */
-    public Boolean archive;
+    public Boolean shouldArchive;
     /**
     * Package for distribution of the project
     */
-    public Boolean distribution;
+    public Boolean forDistribution;
     /**
     * If build step should be executed
     */
-    public Boolean build;
+    public Boolean shouldBuild;
     /**
     * Package the project for the target platform
     */
@@ -147,8 +122,19 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     */
     public def addParameters(List<String> parameters) {
         super.addParameters(parameters);
-
-        parameters.add('-clientconfig=' + clientConfig);
+        if (clientConfig) parameters.add('-clientconfig=' + clientConfig);
+        if (targetPlatform) parameters.add('-targetplatform=' + targetPlatform);
+        if (project) parameters.add('-project=' + project);
+        if (scriptsForProject) parameters.add('-ScriptsForProject=' + scriptsForProject);
+        if (archiveDirectory) parameters.add('-archivedirectory=' + archiveDirectory);
+        if (noPerforce) parameters.add('-nop4');
+        if (shouldCook) parameters.add('-cook');
+        if (shouldStage) parameters.add('-stage');
+        if (shouldArchive) parameters.add('-archive');
+        if (forDistribution) parameters.add('-distribution');
+        if (shouldBuild) parameters.add('-build');
+        if (shouldPackage) parameters.add('-package');
+        if (skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
     }
 }
 
@@ -161,9 +147,9 @@ def buildCookRun(UnrealBuildCookRunParameters parameters) {
 
     parameters.addParameters(UATParameters);
 
-    UATParameters.each { Parameter ->
-        echo "Hello ${Parameter}"
-    }
+    def buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '/Engine/Build/BatchFiles/RunUAT.bat';
+
+    echo parameters.enginePath + buildScript + UATParameters.join(' ');
 }
 
 return this;
