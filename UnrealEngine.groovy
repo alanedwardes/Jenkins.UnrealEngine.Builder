@@ -44,6 +44,48 @@ class UnrealBuildToolGlobalOptions {
     * Whether to wait for the mutex rather than aborting immediately
     */
     public String RemoteIni;
+
+    public def AddParameters(List<String> parameters) {
+        if (parameters.Verbose) {
+            UATParameters.add('-verbose');
+        }
+
+        if (parameters.VeryVerbose) {
+            UATParameters.add('-veryverbose');
+        }
+
+        if (parameters.NoPerforce) {
+            UATParameters.add('-nop4');
+        }
+
+        if (parameters.LogFileName) {
+            UATParameters.add('-logFileName=' + parameters.LogFileName);
+        }
+
+        if (parameters.LogTimestamps) {
+            UATParameters.add('-logtimestamps');
+        }
+
+        if (parameters.LogFromMsBuild) {
+            UATParameters.add('-logfrommsbuild');
+        }
+
+        if (parameters.WriteProgressMarkup) {
+            UATParameters.add('-writeprogressmarkup');
+        }
+
+        if (parameters.NoMutex) {
+            UATParameters.add('-nomutex');
+        }
+
+        if (parameters.WaitMutex) {
+            UATParameters.add('-waitmutex');
+        }
+
+        if (parameters.WriteProgressMarkup) {
+            UATParameters.add('-writeprogressmarkup');
+        }
+    }
 }
 
 class UnrealBuildCookRunParameters : implements UnrealBuildToolGlobalOptions {
@@ -98,8 +140,14 @@ class UnrealBuildCookRunParameters : implements UnrealBuildToolGlobalOptions {
     public Boolean SkipCookingEditorContent;
 }
 
-static class UnrealBuildCookRun {
-   static def BuildCookRun(UnrealBuildCookRunParameters parameters) {
-      
-   } 
+UnrealBuildCookRunParameters CreateBuildCookRunParameters() {
+    return new UnrealBuildCookRunParameters();
 }
+
+def BuildCookRun(UnrealBuildCookRunParameters parameters) {
+    List<String> UATParameters = [];
+
+
+}
+
+return this;
