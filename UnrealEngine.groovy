@@ -136,7 +136,7 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * Package the project for the target platform
     */
-    public Boolean 'package';
+    public Boolean shouldPackage;
     /**
     * Skips content under /Engine/Editor when cooking
     */
