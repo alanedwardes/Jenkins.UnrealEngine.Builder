@@ -2,46 +2,57 @@ class UnrealBuildToolGlobalOptions {
     /**
     * The path to unreal engine
     */
+    public def enginePath(String enginePath) { this.enginePath = enginePath; return this; }
     public String enginePath;
     /**
     * The amount of detail to write to the log
     */
+    public def verbose(String verbose) { this.verbose = verbose; return this; }
     public Boolean verbose;
     /**
     * The amount of detail to write to the log
     */
+    public def veryVerbose(String verbose) { this.veryVerbose = veryVerbose; return this; }
     public Boolean veryVerbose;
     /**
     * Disables Perforce functionality (default if not run on a build machine)
     */
+    public def noPerforce(String noPerforce) { this.noPerforce = noPerforce; return this; }
     public Boolean noPerforce;
     /**
     * Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
     */
+    public def logFileName(String logFileName) { this.logFileName = logFileName; return this; }
     public String logFileName;
     /**
     * Whether to include timestamps in the log
     */
+    public def logTimestamps(String logTimestamps) { this.logTimestamps = logTimestamps; return this; }
     public Boolean logTimestamps;
     /**
     * Whether to format messages in MsBuild format
     */
+    public def logFromMsBuild(String logFromMsBuild) { this.logFromMsBuild = logFromMsBuild; return this; }
     public Boolean logFromMsBuild;
     /**
     * Whether to write progress markup in a format that can be parsed by other programs
     */
+    public def writeProgressMarkup(String writeProgressMarkup) { this.writeProgressMarkup = writeProgressMarkup; return this; }
     public Boolean writeProgressMarkup;
     /**
     * Whether to ignore the mutex
     */
+    public def noMutex(String noMutex) { this.noMutex = noMutex; return this; }
     public Boolean noMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
+    public def waitMutex(String waitMutex) { this.waitMutex = waitMutex; return this; }
     public Boolean waitMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
+    public def remoteIni(String remoteIni) { this.remoteIni = remoteIni; return this; }
     public String remoteIni;
 
     /**
@@ -82,6 +93,7 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     */
     public def project(String project) { this.project = project; return this; }
     public String project;
+
     public def scriptsForProject(String project) { this.scriptsForProject = scriptsForProject; return this; }
     public String scriptsForProject;
     /**
@@ -102,31 +114,41 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * Put this build in an archive directory
     */
+    public def shouldArchive(String shouldArchive) { this.shouldArchive = shouldArchive; return this; }
     public Boolean shouldArchive;
     /**
     * Package for distribution of the project
     */
+    public def forDistribution(String forDistribution) { this.forDistribution = forDistribution; return this; }
     public Boolean forDistribution;
     /**
     * If build step should be executed
     */
+    public def shouldBuild(String shouldBuild) { this.shouldBuild = shouldBuild; return this; }
     public Boolean shouldBuild;
     /**
     * Package the project for the target platform
     */
+    public def shouldPackage(String shouldPackage) { this.shouldPackage = shouldPackage; return this; }
     public Boolean shouldPackage;
     /**
     * Skips content under /Engine/Editor when cooking
     */
+    public def skipCookingEditorContent(String skipCookingEditorContent) { this.skipCookingEditorContent = skipCookingEditorContent; return this; }
     public Boolean skipCookingEditorContent;
     /**
     * Should use packfiles
     */
+    public def usePak(String skipCookingEditorContent) { this.usePak = usePak; return this; }
     public Boolean usePak;
     /**
     * The Unreal Engine 4 executable to use
     */
+    public def executable(String skipCookingEditorContent) { this.executable = executable; return this; }
     public String executable;
+
+    public def noCompileEditor(String noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
+    public String noCompileEditor;
 
     /**
     * Add the parameters to the specified list.
@@ -147,6 +169,7 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
         if (skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
         if (usePak) parameters.add('-Pak');
         if (executable) parameters.add('-UE4exe=' + executable);
+        if (noCompileEditor) parameters.add('-NoCompileEditor');
     }
 }
 
