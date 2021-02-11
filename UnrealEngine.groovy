@@ -45,7 +45,7 @@ class UnrealBuildToolGlobalOptions {
     */
     public String RemoteIni;
 
-    public def AddParameters(List<String> parameters) {
+    public def addParameters(List<String> parameters) {
         if (parameters.Verbose) {
             UATParameters.add('-verbose');
         }
@@ -140,14 +140,18 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     public Boolean SkipCookingEditorContent;
 }
 
-UnrealBuildCookRunParameters CreateBuildCookRunParameters() {
+UnrealBuildCookRunParameters createBuildCookRunParameters() {
     return new UnrealBuildCookRunParameters();
 }
 
-def BuildCookRun(UnrealBuildCookRunParameters parameters) {
+def buildCookRun(UnrealBuildCookRunParameters parameters) {
     List<String> UATParameters = [];
 
+    parameters.addParameters(UATParameters);
 
+    UATParameters.each { Parameter ->
+        echo "Hello ${Parameter}"
+    }
 }
 
 return this;
