@@ -11,79 +11,79 @@ class UnrealBuildToolGlobalOptions {
     /**
     * The amount of detail to write to the log
     */
-    public Boolean Verbose;
+    public Boolean verbose;
     /**
     * The amount of detail to write to the log
     */
-    public Boolean VeryVerbose;
+    public Boolean veryVerbose;
     /**
     * Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
     */
-    public String LogFileName;
+    public String logFileName;
     /**
     * Whether to include timestamps in the log
     */
-    public Boolean LogTimestamps;
+    public Boolean logTimestamps;
     /**
     * Whether to format messages in MsBuild format
     */
-    public Boolean LogFromMsBuild;
+    public Boolean logFromMsBuild;
     /**
     * Whether to write progress markup in a format that can be parsed by other programs
     */
-    public Boolean WriteProgressMarkup;
+    public Boolean writeProgressMarkup;
     /**
     * Whether to ignore the mutex
     */
-    public Boolean NoMutex;
+    public Boolean noMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
-    public Boolean WaitMutex;
+    public Boolean waitMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
-    public String RemoteIni;
+    public String remoteIni;
 
     public def addParameters(List<String> parameters) {
-        if (parameters.Verbose) {
-            UATParameters.add('-verbose');
+        if (parameters.verbose) {
+            parameters.add('-verbose');
         }
 
-        if (parameters.VeryVerbose) {
-            UATParameters.add('-veryverbose');
+        if (parameters.veryVerbose) {
+            parameters.add('-veryverbose');
         }
 
-        if (parameters.NoPerforce) {
-            UATParameters.add('-nop4');
+        if (parameters.noPerforce) {
+            parameters.add('-nop4');
         }
 
-        if (parameters.LogFileName) {
-            UATParameters.add('-logFileName=' + parameters.LogFileName);
+        if (parameters.logFileName) {
+            parameters.add('-logFileName=' + parameters.LogFileName);
         }
 
-        if (parameters.LogTimestamps) {
-            UATParameters.add('-logtimestamps');
+        if (parameters.logTimestamps) {
+            parameters.add('-logtimestamps');
         }
 
-        if (parameters.LogFromMsBuild) {
-            UATParameters.add('-logfrommsbuild');
+        if (parameters.logFromMsBuild) {
+            parameters.add('-logfrommsbuild');
         }
 
-        if (parameters.WriteProgressMarkup) {
-            UATParameters.add('-writeprogressmarkup');
+        if (parameters.writeProgressMarkup) {
+            parameters.add('-writeprogressmarkup');
         }
 
-        if (parameters.NoMutex) {
-            UATParameters.add('-nomutex');
+        if (parameters.noMutex) {
+            parameters.add('-nomutex');
         }
 
-        if (parameters.WaitMutex) {
-            UATParameters.add('-waitmutex');
+        if (parameters.waitMutex) {
+            parameters.add('-waitmutex');
         }
 
-        if (parameters.WriteProgressMarkup) {
-            UATParameters.add('-writeprogressmarkup');
+        if (parameters.writeProgressMarkup) {
+            parameters.add('-writeprogressmarkup');
         }
     }
 }
@@ -92,52 +92,52 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * List of client configurations
     */
-    public UnrealClientConfig ClientConfig;
+    public UnrealClientConfig clientConfig;
     /**
     * Sets platforms to build for non-dedicated servers
     */
-    public String TargetPlatform;
+    public String targetPlatform;
     /**
     * Package the project for the target platform
     */
-    public String Project;
-    public String ScriptsForProject;
+    public String project;
+    public String scriptsForProject;
     /**
     * Directory to archive the client to
     */
-    public String ArchiveDirectory;
+    public String archiveDirectory;
     /**
     * Disables Perforce functionality (default if not run on a build machine)
     */
-    public Boolean NoPerforce;
+    public Boolean noPerforce;
     /**
     * Determines if the build is going to use cooked data
     */
-    public Boolean Cook;
+    public Boolean cook;
     /**
     * Put this build in a stage directory
     */
-    public Boolean Stage;
+    public Boolean stage;
     /**
     * Put this build in an archive directory
     */
-    public Boolean Archive;
+    public Boolean archive;
     /**
     * Package for distribution of the project
     */
-    public Boolean Distribution;
+    public Boolean distribution;
     /**
     * If build step should be executed
     */
-    public Boolean Build;
+    public Boolean build;
     /**
     * Package the project for the target platform
     */
-    public Boolean Package;
+    public Boolean package;
     /**
     * Skips content under /Engine/Editor when cooking
     */
-    public Boolean SkipCookingEditorContent;
+    public Boolean skipCookingEditorContent;
 }
 
 UnrealBuildCookRunParameters createBuildCookRunParameters() {
