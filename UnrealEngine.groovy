@@ -149,6 +149,8 @@ def buildCookRun(UnrealBuildCookRunParameters parameters) {
 
     parameters.addParameters(UATParameters);
 
+    echo UATParameters.size();
+
     UATParameters.each { Parameter ->
         echo "Hello ${Parameter}"
     }
