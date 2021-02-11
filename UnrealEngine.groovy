@@ -70,27 +70,34 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
        * Development
        * DebugGame
     */
+    public def clientConfig(String clientConfig) { this.clientConfig = clientConfig; return this; }
     public String clientConfig;
     /**
     * Sets platforms to build for non-dedicated servers
     */
+    public def targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
     public String targetPlatform;
     /**
     * Package the project for the target platform
     */
+    public def project(String project) { this.project = project; return this; }
     public String project;
+    public def scriptsForProject(String project) { this.scriptsForProject = scriptsForProject; return this; }
     public String scriptsForProject;
     /**
     * Directory to archive the client to
     */
+    public def archiveDirectory(String project) { this.archiveDirectory = archiveDirectory; return this; }
     public String archiveDirectory;
     /**
     * Determines if the build is going to use cooked data
     */
+    public def shouldCook(String project) { this.shouldCook = shouldCook; return this; }
     public Boolean shouldCook;
     /**
     * Put this build in a stage directory
     */
+    public def shouldStage(String project) { this.shouldStage = shouldStage; return this; }
     public Boolean shouldStage;
     /**
     * Put this build in an archive directory
