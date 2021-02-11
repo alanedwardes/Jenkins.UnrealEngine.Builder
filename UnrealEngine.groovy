@@ -2,74 +2,74 @@ class UnrealBuildToolGlobalOptions {
     /**
     * The path to unreal engine
     */
-    public def enginePath(String enginePath) { this.enginePath = enginePath; return this; }
-    public def getEnginePath() { return this.enginePath; }
-    private String enginePath;
+    public def enginePath(String enginePath) { _enginePath = enginePath; return this; }
+    public def getEnginePath() { return _enginePath; }
+    private String _enginePath;
     /**
     * The amount of detail to write to the log
     */
-    public def verbose(String verbose) { this.verbose = verbose; return this; }
-    private Boolean verbose;
+    public def verbose(String verbose) { _verbose = verbose; return this; }
+    private Boolean _verbose;
     /**
     * The amount of detail to write to the log
     */
-    public def veryVerbose(String verbose) { this.veryVerbose = veryVerbose; return this; }
-    private Boolean veryVerbose;
+    public def veryVerbose(String verbose) { _veryVerbose = veryVerbose; return this; }
+    private Boolean _veryVerbose;
     /**
     * Disables Perforce functionality (default if not run on a build machine)
     */
-    public def noPerforce(String noPerforce) { this.noPerforce = noPerforce; return this; }
-    private Boolean noPerforce;
+    public def noPerforce(String noPerforce) { _noPerforce = noPerforce; return this; }
+    private Boolean _noPerforce;
     /**
     * Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
     */
-    public def logFileName(String logFileName) { this.logFileName = logFileName; return this; }
-    private String logFileName;
+    public def logFileName(String logFileName) { _logFileName = logFileName; return this; }
+    private String _logFileName;
     /**
     * Whether to include timestamps in the log
     */
-    public def logTimestamps(String logTimestamps) { this.logTimestamps = logTimestamps; return this; }
-    private Boolean logTimestamps;
+    public def logTimestamps(String logTimestamps) { _logTimestamps = logTimestamps; return this; }
+    private Boolean _logTimestamps;
     /**
     * Whether to format messages in MsBuild format
     */
-    public def logFromMsBuild(String logFromMsBuild) { this.logFromMsBuild = logFromMsBuild; return this; }
-    private Boolean logFromMsBuild;
+    public def logFromMsBuild(String logFromMsBuild) { _logFromMsBuild = logFromMsBuild; return this; }
+    private Boolean _logFromMsBuild;
     /**
     * Whether to write progress markup in a format that can be parsed by other programs
     */
-    public def writeProgressMarkup(String writeProgressMarkup) { this.writeProgressMarkup = writeProgressMarkup; return this; }
-    private Boolean writeProgressMarkup;
+    public def writeProgressMarkup(String writeProgressMarkup) { _writeProgressMarkup = writeProgressMarkup; return this; }
+    private Boolean _writeProgressMarkup;
     /**
     * Whether to ignore the mutex
     */
-    public def noMutex(String noMutex) { this.noMutex = noMutex; return this; }
-    private Boolean noMutex;
+    public def noMutex(String noMutex) { _noMutex = noMutex; return this; }
+    private Boolean _noMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
-    public def waitMutex(String waitMutex) { this.waitMutex = waitMutex; return this; }
-    private Boolean waitMutex;
+    public def waitMutex(String waitMutex) { _waitMutex = waitMutex; return this; }
+    private Boolean _waitMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
-    public def remoteIni(String remoteIni) { this.remoteIni = remoteIni; return this; }
-    private String remoteIni;
+    public def remoteIni(String remoteIni) { _remoteIni = remoteIni; return this; }
+    private String _remoteIni;
 
     /**
     * Add the parameters to the specified list.
     */
     public def addParameters(List<String> parameters) {
-        if (verbose) parameters.add('-Verbose');
-        if (veryVerbose) parameters.add('-VeryVerbose');
-        if (noPerforce) parameters.add('-NoP4');
-        if (logFileName) parameters.add('-Log=' + parameters.LogFileName);
-        if (logTimestamps) parameters.add('-Timestamps');
-        if (logFromMsBuild) parameters.add('-FromMsBuild');
-        if (writeProgressMarkup) parameters.add('-Progress');
-        if (noMutex) parameters.add('-NoMutex');
-        if (waitMutex) parameters.add('-WaitMutex');
-        if (remoteIni) parameters.add('-RemoteIni');
+        if (_verbose) parameters.add('-Verbose');
+        if (_veryVerbose) parameters.add('-VeryVerbose');
+        if (_noPerforce) parameters.add('-NoP4');
+        if (_logFileName) parameters.add('-Log=' + _logFileName);
+        if (_logTimestamps) parameters.add('-Timestamps');
+        if (_logFromMsBuild) parameters.add('-FromMsBuild');
+        if (_writeProgressMarkup) parameters.add('-Progress');
+        if (_noMutex) parameters.add('-NoMutex');
+        if (_waitMutex) parameters.add('-WaitMutex');
+        if (_remoteIni) parameters.add('-RemoteIni');
     }
 }
 
@@ -82,95 +82,95 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
        * Development
        * DebugGame
     */
-    public def clientConfig(String clientConfig) { this.clientConfig = clientConfig; return this; }
-    private String clientConfig;
+    public def clientConfig(String clientConfig) { _clientConfig = clientConfig; return this; }
+    private String _clientConfig;
     /**
     * Sets platforms to build for non-dedicated servers
     */
-    public def targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
-    private String targetPlatform;
+    public def targetPlatform(String targetPlatform) { _targetPlatform = targetPlatform; return this; }
+    private String _targetPlatform;
     /**
     * Package the project for the target platform
     */
-    public def project(String project) { this.project = project; return this; }
-    private String project;
+    public def project(String project) { _project = project; return this; }
+    private String _project;
 
-    public def scriptsForProject(String project) { this.scriptsForProject = scriptsForProject; return this; }
-    private String scriptsForProject;
+    public def scriptsForProject(String project) { _scriptsForProject = scriptsForProject; return this; }
+    private String _scriptsForProject;
     /**
     * Directory to archive the client to
     */
-    public def archiveDirectory(String project) { this.archiveDirectory = archiveDirectory; return this; }
-    private String archiveDirectory;
+    public def archiveDirectory(String project) { _archiveDirectory = archiveDirectory; return this; }
+    private String _archiveDirectory;
     /**
     * Determines if the build is going to use cooked data
     */
-    public def shouldCook(String project) { this.shouldCook = shouldCook; return this; }
-    private Boolean shouldCook;
+    public def shouldCook(String project) { _shouldCook = shouldCook; return this; }
+    private Boolean _shouldCook;
     /**
     * Put this build in a stage directory
     */
-    public def shouldStage(String project) { this.shouldStage = shouldStage; return this; }
-    private Boolean shouldStage;
+    public def shouldStage(String project) { _shouldStage = shouldStage; return this; }
+    private Boolean _shouldStage;
     /**
     * Put this build in an archive directory
     */
-    public def shouldArchive(String shouldArchive) { this.shouldArchive = shouldArchive; return this; }
-    private Boolean shouldArchive;
+    public def shouldArchive(String shouldArchive) { _shouldArchive = shouldArchive; return this; }
+    private Boolean _shouldArchive;
     /**
     * Package for distribution of the project
     */
-    public def forDistribution(String forDistribution) { this.forDistribution = forDistribution; return this; }
-    private Boolean forDistribution;
+    public def forDistribution(String forDistribution) { _forDistribution = forDistribution; return this; }
+    private Boolean _forDistribution;
     /**
     * If build step should be executed
     */
-    public def shouldBuild(String shouldBuild) { this.shouldBuild = shouldBuild; return this; }
-    private Boolean shouldBuild;
+    public def shouldBuild(String shouldBuild) { _shouldBuild = shouldBuild; return this; }
+    private Boolean _shouldBuild;
     /**
     * Package the project for the target platform
     */
-    public def shouldPackage(String shouldPackage) { this.shouldPackage = shouldPackage; return this; }
-    private Boolean shouldPackage;
+    public def shouldPackage(String shouldPackage) { _shouldPackage = shouldPackage; return this; }
+    private Boolean _shouldPackage;
     /**
     * Skips content under /Engine/Editor when cooking
     */
-    public def skipCookingEditorContent(String skipCookingEditorContent) { this.skipCookingEditorContent = skipCookingEditorContent; return this; }
-    private Boolean skipCookingEditorContent;
+    public def skipCookingEditorContent(String skipCookingEditorContent) { _skipCookingEditorContent = skipCookingEditorContent; return this; }
+    private Boolean _skipCookingEditorContent;
     /**
     * Should use packfiles
     */
-    public def usePak(String skipCookingEditorContent) { this.usePak = usePak; return this; }
-    private Boolean usePak;
+    public def usePak(String skipCookingEditorContent) { _usePak = usePak; return this; }
+    private Boolean _usePak;
     /**
     * The Unreal Engine 4 executable to use
     */
-    public def executable(String skipCookingEditorContent) { this.executable = executable; return this; }
-    private String executable;
+    public def executable(String skipCookingEditorContent) { _executable = executable; return this; }
+    private String _executable;
 
-    public def noCompileEditor(String noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
-    private String noCompileEditor;
+    public def noCompileEditor(String noCompileEditor) { _noCompileEditor = noCompileEditor; return this; }
+    private String _noCompileEditor;
 
     /**
     * Add the parameters to the specified list.
     */
     public def addParameters(List<String> parameters) {
         super.addParameters(parameters);
-        if (clientConfig) parameters.add('-ClientConfig=' + clientConfig);
-        if (targetPlatform) parameters.add('-TargetPlatform=' + targetPlatform);
-        if (project) parameters.add('-Project=' + project);
-        if (scriptsForProject) parameters.add('-ScriptsForProject=' + scriptsForProject);
-        if (archiveDirectory) parameters.add('-ArchiveDirectory=' + archiveDirectory);
-        if (shouldCook) parameters.add('-Cook');
-        if (shouldStage) parameters.add('-Stage');
-        if (shouldArchive) parameters.add('-Archive');
-        if (forDistribution) parameters.add('-Distribution');
-        if (shouldBuild) parameters.add('-Build');
-        if (shouldPackage) parameters.add('-Package');
-        if (skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
-        if (usePak) parameters.add('-Pak');
-        if (executable) parameters.add('-UE4exe=' + executable);
-        if (noCompileEditor) parameters.add('-NoCompileEditor');
+        if (_clientConfig) parameters.add('-ClientConfig=' + _clientConfig);
+        if (_targetPlatform) parameters.add('-TargetPlatform=' + _targetPlatform);
+        if (_project) parameters.add('-Project=' + project);
+        if (_scriptsForProject) parameters.add('-ScriptsForProject=' + _scriptsForProject);
+        if (_archiveDirectory) parameters.add('-ArchiveDirectory=' + _archiveDirectory);
+        if (_shouldCook) parameters.add('-Cook');
+        if (_shouldStage) parameters.add('-Stage');
+        if (_shouldArchive) parameters.add('-Archive');
+        if (_forDistribution) parameters.add('-Distribution');
+        if (_shouldBuild) parameters.add('-Build');
+        if (_shouldPackage) parameters.add('-Package');
+        if (_skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
+        if (_usePak) parameters.add('-Pak');
+        if (_executable) parameters.add('-UE4exe=' + executable);
+        if (_noCompileEditor) parameters.add('-NoCompileEditor');
     }
 }
 
@@ -189,9 +189,9 @@ def buildCookRun(UnrealBuildCookRunParameters parameters) {
     echo "Running UAT command: " + command;
 
     if (isUnix()) {
-        sh command
+        sh(command);
     } else {
-        bat command
+        bat(command);
     }
 }
 
