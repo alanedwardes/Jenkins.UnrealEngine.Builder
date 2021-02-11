@@ -3,6 +3,7 @@ class UnrealBuildToolGlobalOptions {
     * The path to unreal engine
     */
     public def enginePath(String enginePath) { this.enginePath = enginePath; return this; }
+    public def getEnginePath() { return this.enginePath; }
     private String enginePath;
     /**
     * The amount of detail to write to the log
@@ -183,7 +184,7 @@ def buildCookRun(UnrealBuildCookRunParameters parameters) {
     List<String> UATParameters = [];
     parameters.addParameters(UATParameters);
 
-    String command = parameters.enginePath + buildScript + ' BuildCookRun ' + UATParameters.join(' ');
+    String command = parameters.getEnginePath() + buildScript + ' BuildCookRun ' + UATParameters.join(' ');
 
     echo "Running UAT command: " + command;
 
