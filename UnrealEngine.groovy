@@ -135,6 +135,7 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
         if (shouldBuild) parameters.add('-build');
         if (shouldPackage) parameters.add('-package');
         if (skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
+        if (usePak) parameters.add('-pak');
     }
 }
 
@@ -147,9 +148,9 @@ def buildCookRun(UnrealBuildCookRunParameters parameters) {
 
     parameters.addParameters(UATParameters);
 
-    def buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '/Engine/Build/BatchFiles/RunUAT.bat';
+    def buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '\\Engine\\Build\\BatchFiles\\RunUAT.bat';
 
-    echo parameters.enginePath + buildScript + UATParameters.join(' ');
+    echo parameters.enginePath + buildScript + ' ' + UATParameters.join(' ');
 }
 
 return this;
