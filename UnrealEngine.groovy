@@ -219,7 +219,7 @@ class SymbolExtractorTool {
     public String product;
 
     public def run(WorkflowScript context) {
-        dir (this.source) {
+        context.dir (this.source) {
             def symbolFiles = context.findFiles(glob: '**/*.*(exe|pdb)');
             for (def symbolFile : this.symbolFiles) {
                 context.bat(this.symstore + ' add /f "' + this.symbolFile.path + '" /s "' + this.destination + '" /t "' + this.product + '"');
