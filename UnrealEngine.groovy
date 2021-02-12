@@ -212,17 +212,17 @@ class SymbolExtractorTool {
     public SymbolExtractorTool source(String source) { this.source = source; return this; }
     public String source;
 
-    public SymbolExtractorTool destination(String symstore) { this.destination = destination; return this; }
+    public SymbolExtractorTool destination(String destination) { this.destination = destination; return this; }
     public String destination;
 
-    public SymbolExtractorTool product(String symstore) { this.product = product; return this; }
+    public SymbolExtractorTool product(String product) { this.product = product; return this; }
     public String product;
 
     public def run(WorkflowScript context) {
         context.dir (this.source) {
-            for (def symbolFile : context.findFiles(glob: '**\\*.*')) {
+            for (def symbolFile : context.findFiles(glob: '**/*.*')) {
                 if (symbolFile.name.endsWith('exe') || symbolFile.name.endsWith('pdb')) {
-                    context.bat(this.symstore + ' add /f "' + symbolFile.path + '" /s "' + this.destination + '" /t "' + this.product + '"');
+                    context.bat('"' + this.symstore + '" add /f "' + symbolFile.path + '" /s "' + this.destination + '" /t "' + this.product + '"');
                 }
             }
         }
