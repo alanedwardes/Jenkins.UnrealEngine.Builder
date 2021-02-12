@@ -179,7 +179,7 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * Run the command.
     */
-    public UnrealBuildCookRunResult run() {
+    public def UnrealBuildCookRunResult run() {
         String buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '\\Engine\\Build\\BatchFiles\\RunUAT.bat';
 
         List<String> parameters = [];
