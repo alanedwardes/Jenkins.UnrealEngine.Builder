@@ -220,8 +220,10 @@ class SymbolExtractorTool {
 
     public def run(WorkflowScript context) {
         context.dir (this.source) {
-            for (def symbolFile : context.findFiles(glob: '**\\*.*(exe|pdb)')) {
-                context.bat(this.symstore + ' add /f "' + this.symbolFile.path + '" /s "' + this.destination + '" /t "' + this.product + '"');
+            for (def symbolFile : context.findFiles(glob: '**\\*.*')) {
+                if (symbolFile.name.endsWith('exe') || symbolFile.name.endsWith('pdb')) {
+                    context.bat(this.symstore + ' add /f "' + symbolFile.path + '" /s "' + this.destination + '" /t "' + this.product + '"');
+                }
             }
         }
     }
