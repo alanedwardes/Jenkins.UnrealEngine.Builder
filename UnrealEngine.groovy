@@ -72,6 +72,10 @@ class UnrealBuildToolGlobalOptions {
     }
 }
 
+class UnrealBuildCookRunResult {
+    public String deployPath;
+}
+
 class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     /**
     * List of client configurations:
@@ -171,35 +175,34 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
         if (this.executable) parameters.add('-UE4exe=' + executable);
         if (this.noCompileEditor) parameters.add('-NoCompileEditor');
     }
-}
 
-class UnrealBuildCookRunResult {
-    public String DeployPath;
-}
+    /**
+    * Run the command.
+    */
+    public UnrealBuildCookRunResult run() {
+        String buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '\\Engine\\Build\\BatchFiles\\RunUAT.bat';
 
-UnrealBuildCookRunParameters createBuildCookRunParameters() {
-    return new UnrealBuildCookRunParameters();
-}
+        List<String> parameters = [];
+        addParameters(parameters);
 
-UnrealBuildCookRunResult buildCookRun(UnrealBuildCookRunParameters parameters) {
-    String buildScript = isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '\\Engine\\Build\\BatchFiles\\RunUAT.bat';
+        String command = parameters.enginePath + buildScript + ' BuildCookRun ' + parameters.join(' ');
 
-    List<String> UATParameters = [];
-    parameters.addParameters(UATParameters);
+        if (isUnix()) {
+            sh(command);
+        } else {
+            bat(command);
+        }
 
-    String command = parameters.enginePath + buildScript + ' BuildCookRun ' + UATParameters.join(' ');
+        String noEditorPath = (parameters.targetPlatform.startsWith('Win') ? 'Windows' : parameters.targetPlatform) + 'NoEditor';
 
-    if (isUnix()) {
-        sh(command);
-    } else {
-        bat(command);
+        UnrealBuildCookRunResult result = new UnrealBuildCookRunResult();
+        result.deployPath = parameters.archiveDirectory + '/' + noEditorPath;
+        return result;
     }
+}
 
-    String noEditorPath = (parameters.targetPlatform.startsWith('Win') ? 'Windows' : parameters.targetPlatform) + 'NoEditor';
-
-    UnrealBuildCookRunResult result = new UnrealBuildCookRunResult();
-    result.DeployPath = parameters.archiveDirectory + '/' + noEditorPath;
-    return result;
+UnrealBuildCookRunParameters buildCookRun() {
+    return new UnrealBuildCookRunParameters();
 }
 
 return this;
