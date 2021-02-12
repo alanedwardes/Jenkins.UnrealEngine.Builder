@@ -206,16 +206,16 @@ UnrealBuildCookRunTool buildCookRun() {
 }
 
 class SymbolExtractorTool {
-    public SymbolExtractorToolParameters symstore(String symstore) { this.symstore = symstore; return this; }
+    public SymbolExtractorTool symstore(String symstore) { this.symstore = symstore; return this; }
     public String symstore;
 
-    public SymbolExtractorToolParameters source(String source) { this.source = source; return this; }
+    public SymbolExtractorTool source(String source) { this.source = source; return this; }
     public String source;
 
-    public SymbolExtractorToolParameters destination(String symstore) { this.destination = destination; return this; }
+    public SymbolExtractorTool destination(String symstore) { this.destination = destination; return this; }
     public String destination;
 
-    public SymbolExtractorToolParameters product(String symstore) { this.product = product; return this; }
+    public SymbolExtractorTool product(String symstore) { this.product = product; return this; }
     public String product;
 
     public def run(WorkflowScript context) {
