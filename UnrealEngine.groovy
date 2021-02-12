@@ -76,7 +76,7 @@ class UnrealBuildCookRunResult {
     public String deployPath;
 }
 
-class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
+class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
     /**
     * List of client configurations:
        * Debug
@@ -85,73 +85,73 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
        * Development
        * DebugGame
     */
-    public UnrealBuildCookRunParameters clientConfig(String clientConfig) { this.clientConfig = clientConfig; return this; }
+    public UnrealBuildCookRunTool clientConfig(String clientConfig) { this.clientConfig = clientConfig; return this; }
     public String clientConfig;
     /**
     * Sets platforms to build for non-dedicated servers
     */
-    public UnrealBuildCookRunParameters targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
+    public UnrealBuildCookRunTool targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
     public String targetPlatform;
     /**
     * Package the project for the target platform
     */
-    public UnrealBuildCookRunParameters project(String project) { this.project = project; return this; }
+    public UnrealBuildCookRunTool project(String project) { this.project = project; return this; }
     public String project;
 
-    public UnrealBuildCookRunParameters scriptsForProject(String scriptsForProject) { this.scriptsForProject = scriptsForProject; return this; }
+    public UnrealBuildCookRunTool scriptsForProject(String scriptsForProject) { this.scriptsForProject = scriptsForProject; return this; }
     public String scriptsForProject;
     /**
     * Directory to archive the client to
     */
-    public UnrealBuildCookRunParameters archiveDirectory(String archiveDirectory) { this.archiveDirectory = archiveDirectory; return this; }
+    public UnrealBuildCookRunTool archiveDirectory(String archiveDirectory) { this.archiveDirectory = archiveDirectory; return this; }
     public String archiveDirectory;
     /**
     * Determines if the build is going to use cooked data
     */
-    public UnrealBuildCookRunParameters shouldCook(Boolean shouldCook) { this.shouldCook = shouldCook; return this; }
+    public UnrealBuildCookRunTool shouldCook(Boolean shouldCook) { this.shouldCook = shouldCook; return this; }
     public Boolean shouldCook;
     /**
     * Put this build in a stage directory
     */
-    public UnrealBuildCookRunParameters shouldStage(Boolean shouldStage) { this.shouldStage = shouldStage; return this; }
+    public UnrealBuildCookRunTool shouldStage(Boolean shouldStage) { this.shouldStage = shouldStage; return this; }
     public Boolean shouldStage;
     /**
     * Put this build in an archive directory
     */
-    public UnrealBuildCookRunParameters shouldArchive(Boolean shouldArchive) { this.shouldArchive = shouldArchive; return this; }
+    public UnrealBuildCookRunTool shouldArchive(Boolean shouldArchive) { this.shouldArchive = shouldArchive; return this; }
     public Boolean shouldArchive;
     /**
     * Package for distribution of the project
     */
-    public UnrealBuildCookRunParameters forDistribution(Boolean forDistribution) { this.forDistribution = forDistribution; return this; }
+    public UnrealBuildCookRunTool forDistribution(Boolean forDistribution) { this.forDistribution = forDistribution; return this; }
     public Boolean forDistribution;
     /**
     * If build step should be executed
     */
-    public UnrealBuildCookRunParameters shouldBuild(Boolean shouldBuild) { this.shouldBuild = shouldBuild; return this; }
+    public UnrealBuildCookRunTool shouldBuild(Boolean shouldBuild) { this.shouldBuild = shouldBuild; return this; }
     public Boolean shouldBuild;
     /**
     * Package the project for the target platform
     */
-    public UnrealBuildCookRunParameters shouldPackage(Boolean shouldPackage) { this.shouldPackage = shouldPackage; return this; }
+    public UnrealBuildCookRunTool shouldPackage(Boolean shouldPackage) { this.shouldPackage = shouldPackage; return this; }
     public Boolean shouldPackage;
     /**
     * Skips content under /Engine/Editor when cooking
     */
-    public UnrealBuildCookRunParameters skipCookingEditorContent(Boolean skipCookingEditorContent) { this.skipCookingEditorContent = skipCookingEditorContent; return this; }
+    public UnrealBuildCookRunTool skipCookingEditorContent(Boolean skipCookingEditorContent) { this.skipCookingEditorContent = skipCookingEditorContent; return this; }
     public Boolean skipCookingEditorContent;
     /**
     * Should use packfiles
     */
-    public UnrealBuildCookRunParameters usePak(Boolean usePak) { this.usePak = usePak; return this; }
+    public UnrealBuildCookRunTool usePak(Boolean usePak) { this.usePak = usePak; return this; }
     public Boolean usePak;
     /**
     * The Unreal Engine 4 executable to use
     */
-    public UnrealBuildCookRunParameters executable(String executable) { this.executable = executable; return this; }
+    public UnrealBuildCookRunTool executable(String executable) { this.executable = executable; return this; }
     public String executable;
 
-    public UnrealBuildCookRunParameters noCompileEditor(String noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
+    public UnrealBuildCookRunTool noCompileEditor(String noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
     public String noCompileEditor;
 
     /**
@@ -201,8 +201,35 @@ class UnrealBuildCookRunParameters extends UnrealBuildToolGlobalOptions {
     }
 }
 
-UnrealBuildCookRunParameters buildCookRun() {
-    return new UnrealBuildCookRunParameters();
+UnrealBuildCookRunTool buildCookRun() {
+    return new UnrealBuildCookRunTool();
+}
+
+class SymbolExtractorTool {
+    public SymbolExtractorToolParameters symstore(String symstore) { this.symstore = symstore; return this; }
+    public String symstore;
+
+    public SymbolExtractorToolParameters source(String source) { this.source = source; return this; }
+    public String source;
+
+    public SymbolExtractorToolParameters destination(String symstore) { this.destination = destination; return this; }
+    public String destination;
+
+    public SymbolExtractorToolParameters product(String symstore) { this.product = product; return this; }
+    public String product;
+
+    public def run(WorkflowScript context) {
+        dir (this.source) {
+            def symbolFiles = findFiles(glob: '**/*.*(exe|pdb)');
+            for (def symbolFile : this.symbolFiles) {
+                context.bat(this.symstore + ' add /f "' + this.symbolFile.path + '" /s "' + this.destination + '" /t "' + this.product + '"');
+            }
+        }
+    }
+}
+
+SymbolExtractorTool extractSymbols() {
+    return new SymbolExtractorTool();
 }
 
 return this;
