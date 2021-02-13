@@ -502,7 +502,7 @@ class UnrealResavePackagesTool {
     public String packageSubString;
 
     public UnrealBuildTool addMap(String map) { this.maps.add(map); return this; }
-    public List<String> maps = new List<String>();
+    public List<String> maps = [];
 
     public def addParameters(List<String> parameters) {
         Ensure.isSet(this.enginePath, 'enginePath');
