@@ -187,12 +187,14 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
     * Run the command.
     */
     public def UnrealBuildCookRunResult run(WorkflowScript context) {
-        String buildScript = context.isUnix() ? '/Engine/Build/BatchFiles/RunUAT.sh' : '\\Engine\\Build\\BatchFiles\\RunUAT.bat';
-
         List<String> parameters = [];
         this.addParameters(parameters);
 
-        String command = this.enginePath + buildScript + ' BuildCookRun ' + parameters.join(' ');
+        String buildScript = context.isUnix() ?
+            '"' + this.enginePath + '/Engine/Build/BatchFiles/RunUAT.sh"' :
+            '"' + this.enginePath + '\\Engine\\Build\\BatchFiles\\RunUAT.bat"';
+
+        String command = buildScript + ' BuildCookRun ' + parameters.join(' ');
 
         if (context.isUnix()) {
             context.sh(command);
