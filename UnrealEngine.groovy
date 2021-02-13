@@ -363,7 +363,6 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
         if (this.doNotBuildUHT) parameters.add('-NoBuildUHT');
         if (this.failIfGeneratedCodeChanges) parameters.add('-FailIfGeneratedCodeChanges');
         if (!this.allowHotReloadFromIDE) parameters.add('-NoHotReloadFromIDE');
-        if (!this.allowHotReloadFromIDE) parameters.add('-NoHotReloadFromIDE');
         if (this.skipRulesCompile) parameters.add('-SkipRulesCompile');
 
         super.addParameters(parameters);
@@ -382,10 +381,10 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
 
         String command = buildScript + ' ' + parameters.join(' ');
 
-        if (isUnix()) {
-            sh(command);
+        if (context.isUnix()) {
+            context.sh(command);
         } else {
-            bat(command);
+            context.bat(command);
         }
     }
 }
