@@ -15,6 +15,10 @@ dir ('Builder') {
 }
 ```
 
+## Versioning
+If pulling this library in your build, always use a versioned branch, do not use `main`. The versioned branches are guaranteed to be updated with forwards-compatible changes (fixes and features).
+* `v1` Initial version of tools
+
 ## Usage Examples
 
 1. [Cooking your Game](#build-cook-run)
