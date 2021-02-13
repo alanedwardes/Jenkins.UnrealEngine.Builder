@@ -59,6 +59,8 @@ class UnrealBuildToolGlobalOptions {
     * Add the parameters to the specified list.
     */
     public def addParameters(List<String> parameters) {
+        Ensure.isSet(this.enginePath, 'enginePath');
+
         if (this.verbose) parameters.add('-Verbose');
         if (this.veryVerbose) parameters.add('-VeryVerbose');
         if (this.noPerforce) parameters.add('-NoP4');
@@ -158,7 +160,10 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
     * Add the parameters to the specified list.
     */
     public def addParameters(List<String> parameters) {
-        super.addParameters(parameters);
+        Ensure.isSet(this.clientConfig, 'clientConfig');
+        Ensure.isSet(this.targetPlatform, 'targetPlatform');
+        Ensure.isSet(this.project, 'project');
+
         if (this.clientConfig) parameters.add('-ClientConfig=' + clientConfig);
         if (this.targetPlatform) parameters.add('-TargetPlatform=' + targetPlatform);
         if (this.project) parameters.add('-Project=' + project);
@@ -174,6 +179,8 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
         if (this.usePak) parameters.add('-Pak');
         if (this.executable) parameters.add('-UE4exe=' + executable);
         if (this.noCompileEditor) parameters.add('-NoCompileEditor');
+
+        super.addParameters(parameters);
     }
 
     /**
@@ -219,6 +226,11 @@ class SymbolExtractorTool {
     public String product;
 
     public def run(WorkflowScript context) {
+        Ensure.isSet(this.symstore, 'symstore');
+        Ensure.isSet(this.source, 'source');
+        Ensure.isSet(this.destination, 'destination');
+        Ensure.isSet(this.product, 'product');
+
         context.dir (this.source) {
             for (def symbolFile : context.findFiles(glob: '**/*.*')) {
                 if (symbolFile.name.endsWith('exe') || symbolFile.name.endsWith('pdb')) {
@@ -231,6 +243,150 @@ class SymbolExtractorTool {
 
 SymbolExtractorTool extractSymbols() {
     return new SymbolExtractorTool();
+}
+
+class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
+    /**
+    * Sets the target to build
+    */
+    public UnrealBuildTool target(String target) { this.target = target; return this; }
+    public String target;
+    /**
+    * List of client configurations:
+       * Debug
+       * Shipping
+       * Test
+       * Development
+       * DebugGame
+    */
+    public UnrealBuildTool clientConfig(String clientConfig) { this.clientConfig = clientConfig; return this; }
+    public String clientConfig;
+    /**
+    * Sets platforms to build for non-dedicated servers
+    */
+    public UnrealBuildTool targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
+    public String targetPlatform;
+    /**
+    * Package the project for the target platform
+    */
+    public UnrealBuildTool project(String project) { this.project = project; return this; }
+    public String project;
+    /**
+    * Use existing static libraries for all engine modules in this target.
+    */
+    public UnrealBuildTool usePrecompiled(Boolean usePrecompiled) { this.usePrecompiled = usePrecompiled; return this; }
+    public Boolean usePrecompiled = false;
+    /**
+    * Whether XGE may be used.
+    */
+    public UnrealBuildTool allowXGE(Boolean allowXGE) { this.allowXGE = allowXGE; return this; }
+    public Boolean allowXGE = true;
+    /**
+    * Whether FASTBuild may be used.
+    */
+    public UnrealBuildTool allowFASTBuild(Boolean allowFASTBuild) { this.allowFASTBuild = allowFASTBuild; return this; }
+    public Boolean allowFASTBuild = true;
+    /**
+    * Enables support for very fast iterative builds by caching target data. Turning this on causes Unreal Build Tool to emit
+    * 'UBT Makefiles' for targets when they are built the first time. Subsequent builds will load these Makefiles and begin
+    * outdatedness checking and build invocation very quickly. The caveat is that if source files are added or removed to
+    * the project, UBT will need to gather information about those in order for your build to complete successfully. Currently,
+    * you must run the project file generator after adding/removing source files to tell UBT to re-gather this information.
+    * 
+    * Events that can invalidate the 'UBT Makefile':  
+    *		- Adding/removing .cpp files
+    *		- Adding/removing .h files with UObjects
+    *		- Adding new UObject types to a file that did not previously have any
+    *		- Changing global build settings (most settings in this file qualify)
+    *		- Changed code that affects how Unreal Header Tool works
+    *	
+    *	You can force regeneration of the 'UBT Makefile' by passing the '-gather' argument, or simply regenerating project files.
+    *
+    *	This also enables the fast include file dependency scanning and caching system that allows Unreal Build Tool to detect out 
+    * of date dependencies very quickly. When enabled, a deep C++ include graph does not have to be generated, and instead,
+    * we only scan and cache indirect includes for after a dependent build product was already found to be out of date. During the
+    * next build, we will load those cached indirect includes and check for outdatedness.
+    */
+    public UnrealBuildTool noUBTMakefiles(Boolean noUBTMakefiles) { this.noUBTMakefiles = noUBTMakefiles; return this; }
+    public Boolean useUBTMakefiles = true;
+    /**
+    * Number of actions that can be executed in parallel. If 0 then code will pick a default based on the number of cores available. Only applies to the ParallelExecutor
+    */
+    public UnrealBuildTool maxParallelActions(Integer maxParallelActions) { this.maxParallelActions = maxParallelActions; return this; }
+    public Integer maxParallelActions = 0;
+    /**
+    * If true, force header regeneration. Intended for the build machine.
+    */
+    public UnrealBuildTool forceHeaderGeneration(Boolean forceHeaderGeneration) { this.forceHeaderGeneration = forceHeaderGeneration; return this; }
+    public Boolean forceHeaderGeneration = false;
+    /**
+    * If true, do not build UHT, assume it is already built.
+    */
+    public UnrealBuildTool doNotBuildUHT(Boolean doNotBuildUHT) { this.doNotBuildUHT = doNotBuildUHT; return this; }
+    public Boolean doNotBuildUHT = false;
+    /**
+    * If true, fail if any of the generated header files is out of date.
+    */
+    public UnrealBuildTool failIfGeneratedCodeChanges(Boolean failIfGeneratedCodeChanges) { this.failIfGeneratedCodeChanges = failIfGeneratedCodeChanges; return this; }
+    public Boolean failIfGeneratedCodeChanges = false;
+    /**
+    * True if hot-reload from IDE is allowed.
+    */
+    public UnrealBuildTool allowHotReloadFromIDE(Boolean allowHotReloadFromIDE) { this.allowHotReloadFromIDE = allowHotReloadFromIDE; return this; }
+    public Boolean allowHotReloadFromIDE = true;
+    /**
+    * If true, fail if any of the generated header files is out of date.
+    */
+    public UnrealBuildTool skipRulesCompile(Boolean skipRulesCompile) { this.skipRulesCompile = skipRulesCompile; return this; }
+    public Boolean skipRulesCompile = false;
+
+    /**
+    * Add the parameters to the specified list.
+    */
+    public def addParameters(List<String> parameters) {
+        Ensure.isSet(this.target, 'target');
+        Ensure.isSet(this.clientConfig, 'clientConfig');
+        Ensure.isSet(this.targetPlatform, 'targetPlatform');
+        Ensure.isSet(this.project, 'project');
+
+        parameters.add(this.target);
+        parameters.add(this.clientConfig);
+        parameters.add(this.targetPlatform);
+
+        if (this.project) parameters.add('-Project=' + this.project);
+        if (this.usePrecompiled) parameters.add('-UsePrecompiled');
+        if (!this.allowXGE) parameters.add('-NoXGE');
+        if (!this.allowFASTBuild) parameters.add('-NoFASTBuild');
+        if (!this.useUBTMakefiles) parameters.add('-NoUBTMakefiles');
+        if (this.maxParallelActions > 0) parameters.add('-MaxParallelActions=' + this.maxParallelActions);
+        if (this.forceHeaderGeneration) parameters.add('-ForceHeaderGeneration');
+        if (this.doNotBuildUHT) parameters.add('-NoBuildUHT');
+        if (this.failIfGeneratedCodeChanges) parameters.add('-FailIfGeneratedCodeChanges');
+        if (!this.allowHotReloadFromIDE) parameters.add('-NoHotReloadFromIDE');
+        if (!this.allowHotReloadFromIDE) parameters.add('-NoHotReloadFromIDE');
+        if (this.skipRulesCompile) parameters.add('-SkipRulesCompile');
+
+        super.addParameters(parameters);
+    }
+
+    /**
+    * Run the command.
+    */
+    public def run(WorkflowScript context) {
+
+    }
+}
+
+UnrealBuildTool build() {
+    return new UnrealBuildTool();
+}
+
+class Ensure {
+    static void isSet(String parameter, String parameterName) {
+        if (!parameter) {
+            throw new Exception("Parameter ${parameterName} must be set");
+        }
+    }
 }
 
 return this;
