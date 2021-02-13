@@ -153,8 +153,8 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
     public UnrealBuildCookRunTool executable(String executable) { this.executable = executable; return this; }
     public String executable;
 
-    public UnrealBuildCookRunTool noCompileEditor(String noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
-    public String noCompileEditor;
+    public UnrealBuildCookRunTool noCompileEditor(Boolean noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
+    public Boolean noCompileEditor;
 
     /**
     * Add the parameters to the specified list.
