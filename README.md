@@ -17,28 +17,45 @@ dir ('Builder') {
 }
 ```
 
-### Building your Game
+### Cooking your Game
 
-The below snippet runs Unreal Engine 4 build tools via the command line to build, cook and package your game:
+The below snippet runs Unreal Engine 4 build tools via the command line to build, cook and package your game, similar to doing so in the Unreal Engine Editor UI:
 
 ```groovy
 def buildResult = builder.buildCookRun()
-  .enginePath('Path/To/UnrealEngine')
-  .noPerforce(true)
-  .verbose(true)
-  .project('Path/To/MyProject.uproject')
-  .shouldCook(true)
-  .shouldStage(true)
-  .shouldArchive(true)
-  .forDistribution(true)
-  .shouldBuild(true)
-  .shouldPackage(true)
-  .skipCookingEditorContent(true)
-  .targetPlatform('Win64')
-  .clientConfig('Shipping')
-  .usePak(true)
-  .archiveDirectory('Path/To/Archive)
-  .run(this);
+    .enginePath('Path/To/UnrealEngine')
+    .noPerforce(true)
+    .verbose(true)
+    .project('Path/To/MyProject.uproject')
+    .shouldCook(true)
+    .shouldStage(true)
+    .shouldArchive(true)
+    .forDistribution(true)
+    .shouldBuild(true)
+    .shouldPackage(true)
+    .skipCookingEditorContent(true)
+    .targetPlatform('Win64')
+    .clientConfig('Shipping')
+    .usePak(true)
+    .archiveDirectory('Path/To/Archive)
+    .run(this);
+```
+
+### Building your Game
+
+The below snippet builds the editor binaries for your chosen platform using Unreal Build Tool:
+
+```groovy
+builder.build()
+    .enginePath('Path/To/UnrealEngine')
+    .target('MyGameEditor')
+    .clientConfig('Development')
+    .targetPlatform('Win64')
+    .useUBTMakefiles(false)
+    .allowFASTBuild(false)
+    .allowHotReloadFromIDE(false)
+    .project('Path/To/MyProject.uproject')
+    .run(this);
 ```
 
 ### Extracting Symbols
