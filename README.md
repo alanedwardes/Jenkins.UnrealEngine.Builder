@@ -13,32 +13,51 @@ You can either:
 def builder;
 dir ('Builder') {
     git(url: 'https://github.com/alanedwardes/Jenkins.UnrealEngine.Builder.git', branch: 'main');
-    builder = load('UnrealEngine.groovy')
+    builder = load('UnrealEngine.groovy');
 }
+```
+
+### Cooking your Game
+
+The below snippet runs Unreal Engine 4 build tools via the command line to build, cook and package your game, similar to doing so in the Unreal Engine Editor UI:
+
+```groovy
+def buildResult = builder.buildCookRun()
+    .enginePath('Path/To/UnrealEngine')
+    .noPerforce(true)
+    .verbose(true)
+    .project('Path/To/MyProject.uproject')
+    .shouldCook(true)
+    .shouldStage(true)
+    .shouldArchive(true)
+    .forDistribution(true)
+    .shouldBuild(true)
+    .shouldPackage(true)
+    .skipCookingEditorContent(true)
+    .targetPlatform('Win64')
+    .clientConfig('Shipping')
+    .usePak(true)
+    .archiveDirectory('Path/To/Archive)
+    .run(this);
+    
+echo(buildResult.deployPath); // Prints "Path/To/WindowsNoEditor"
 ```
 
 ### Building your Game
 
-The below snippet runs Unreal Engine 4 build tools via the command line to build, cook and package your game:
+The below snippet builds the editor binaries for your chosen platform using Unreal Build Tool:
 
 ```groovy
-def buildResult = builder.buildCookRun()
-  .enginePath('Path/To/UnrealEngine')
-  .noPerforce(true)
-  .verbose(true)
-  .project('Path/To/MyProject.uproject')
-  .shouldCook(true)
-  .shouldStage(true)
-  .shouldArchive(true)
-  .forDistribution(true)
-  .shouldBuild(true)
-  .shouldPackage(true)
-  .skipCookingEditorContent(true)
-  .targetPlatform('Win64')
-  .clientConfig('Shipping')
-  .usePak(true)
-  .archiveDirectory('Path/To/Archive)
-  .run(this);
+builder.build()
+    .enginePath('Path/To/UnrealEngine')
+    .target('MyGameEditor')
+    .clientConfig('Development')
+    .targetPlatform('Win64')
+    .useUBTMakefiles(false)
+    .allowFASTBuild(false)
+    .allowHotReloadFromIDE(false)
+    .project('Path/To/MyProject.uproject')
+    .run(this);
 ```
 
 ### Extracting Symbols
@@ -58,6 +77,6 @@ The symbols can then be uploaded somewhere, for example Amazon S3:
 
 ```groovy
 withAWS(region: 'eu-west-1', credentials: 'MyAWSCredentials') {
-    s3Upload(bucket: 'symbols', workingDir: env.WORKSPACE + '/Symbols', includePathPattern: '**/*')
+    s3Upload(bucket: 'symbols', workingDir: env.WORKSPACE + '/Symbols', includePathPattern: '**/*');
 }
 ```
