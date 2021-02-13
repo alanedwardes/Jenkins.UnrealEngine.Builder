@@ -20,7 +20,7 @@ dir ('Builder') {
 1. [Cooking your Game](#build-cook-run)
 2. [Building your Game](#build)
 3. [Building Lighting](#resave-packages)
-4. [Extract Symbols](#extract-symbols)
+4. [Extracting Symbols](#extracting-symbols)
 
 ### Build Cook Run
 
@@ -140,6 +140,31 @@ builder.resavePackages()
     .addMap('/Game/Maps/MyMap2')
     .run(this);
 ```
+
+| Option | Required | Type | Description |
+| - | - | - | - |
+| enginePath | Yes | String | The path to Unreal Engine |
+| targetPlatform | Yes | String | Sets platforms to build for non-dedicated servers |
+| project | Yes | String | Package the project for the target platform |
+| skipMaps | - | Boolean | - |
+| mapsOnly | - | Boolean | - |
+| projectOnly | - | Boolean | - |
+| skipDeveloperFolders | - | Boolean | - |
+| onlyDeveloperFolders | - | Boolean | - |
+| fixupRedirects | - | Boolean | This option will filter the package list and only save packages that are redirectors, or that reference redirectors |
+| buildLighting | - | Boolean | Determine if we are building lighting for the map packages on the pass |
+| buildReflectionCaptures | - | Boolean | Determine if we are building reflection captures for the map packages on the pass |
+| buildTextureStreamingForAll | - | Boolean | Rebuilds texture streaming data for all packages, rather than just maps |
+| buildTextureStreaming | - | Boolean | Determine if we are building texture streaming data for the map packages on the pass |
+| onlyMaterials | - | Boolean | Only process packages containing materials |
+| buildNavigationData | - | Boolean | Determine if we are building navigation data for the map packages on the pass |
+| filterByCollection | - | String | Check for filtering packages by collection |
+| buildHLOD | - | Boolean | Determine if we are building HLOD data for the map packages on the pass. |
+| allowCommandletRendering | - | Boolean | - |
+| quality | - | String | Lighting quality, defaults to Production. |
+| firstPackage | - | String | Allow for an option to restart at a given package name (in case it dies during a run, etc) |
+| packageSubString | - | String | - |
+| addMap | - | String | Adds the specified map to the build (if no maps specified, the default is all) |
 
 :warning: If your Windows build agent is running as a service user, this will fail when trying to initialise the GPU. The Jenkins agent must be running interactively (e.g. started by a logged in user and visible on the desktop).
 
