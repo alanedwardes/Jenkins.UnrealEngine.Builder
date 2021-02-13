@@ -188,3 +188,10 @@ withAWS(region: 'eu-west-1', credentials: 'MyAWSCredentials') {
     s3Upload(bucket: 'symbols', workingDir: env.WORKSPACE + '/Symbols', includePathPattern: '**/*');
 }
 ```
+
+| Option | Required | Type | Description |
+| - | - | - | - |
+| symstore | Yes | String | The path to symstore.exe |
+| source | Yes | String | The path to your deployed game, for example the "WindowsNoEditor" folder |
+| destination | Yes | String | The path to output the symbols |
+| product | Yes | String | The name of the product to identify these symbols (see symstore.exe documentation) |
