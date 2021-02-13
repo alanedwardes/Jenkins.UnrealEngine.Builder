@@ -141,6 +141,8 @@ builder.resavePackages()
     .run(this);
 ```
 
+:warning: If your Windows build agent is running as a service user, this will fail when trying to initialise the GPU. The Jenkins agent must be running interactively (e.g. started by a logged in user and visible on the desktop).
+
 | Option | Required | Type | Description |
 | - | - | - | - |
 | enginePath | Yes | String | The path to Unreal Engine |
@@ -165,8 +167,6 @@ builder.resavePackages()
 | firstPackage | - | String | Allow for an option to restart at a given package name (in case it dies during a run, etc) |
 | packageSubString | - | String | - |
 | addMap | - | String | Adds the specified map to the build (if no maps specified, the default is all) |
-
-:warning: If your Windows build agent is running as a service user, this will fail when trying to initialise the GPU. The Jenkins agent must be running interactively (e.g. started by a logged in user and visible on the desktop).
 
 ### Extracting Symbols
 
