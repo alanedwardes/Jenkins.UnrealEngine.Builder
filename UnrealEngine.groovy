@@ -307,7 +307,7 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
     * we only scan and cache indirect includes for after a dependent build product was already found to be out of date. During the
     * next build, we will load those cached indirect includes and check for outdatedness.
     */
-    public UnrealBuildTool noUBTMakefiles(Boolean noUBTMakefiles) { this.noUBTMakefiles = noUBTMakefiles; return this; }
+    public UnrealBuildTool useUBTMakefiles(Boolean useUBTMakefiles) { this.useUBTMakefiles = useUBTMakefiles; return this; }
     public Boolean useUBTMakefiles = true;
     /**
     * Number of actions that can be executed in parallel. If 0 then code will pick a default based on the number of cores available. Only applies to the ParallelExecutor
