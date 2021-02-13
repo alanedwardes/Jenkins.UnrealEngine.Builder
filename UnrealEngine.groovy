@@ -512,8 +512,8 @@ class UnrealResavePackagesTool {
         this.addParameters(parameters);
 
         String buildScript = context.isUnix() ?
-            '"' + this.enginePath + '/Engine/Build/BatchFiles/' + this.targetPlatform + '/UE4Editor-Cmd"' :
-            '"' + this.enginePath + '\\Engine\\Build\\BatchFiles\\' + this.targetPlatform + '\\UE4Editor-Cmd.exe"';
+            '"' + this.enginePath + '/Engine/Binaries/' + this.targetPlatform + '/UE4Editor-Cmd"' :
+            '"' + this.enginePath + '\\Engine\\Binaries\\' + this.targetPlatform + '\\UE4Editor-Cmd.exe"';
 
         String command = buildScript + ' ' + parameters.join(' ');
 
