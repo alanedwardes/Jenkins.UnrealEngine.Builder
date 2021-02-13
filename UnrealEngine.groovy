@@ -166,9 +166,9 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
 
         if (this.clientConfig) parameters.add('-ClientConfig=' + clientConfig);
         if (this.targetPlatform) parameters.add('-TargetPlatform=' + targetPlatform);
-        if (this.project) parameters.add('-Project=' + project);
-        if (this.scriptsForProject) parameters.add('-ScriptsForProject=' + scriptsForProject);
-        if (this.archiveDirectory) parameters.add('-ArchiveDirectory=' + archiveDirectory);
+        if (this.project) parameters.add('-Project="' + project + '"');
+        if (this.scriptsForProject) parameters.add('-ScriptsForProject="' + scriptsForProject + '"');
+        if (this.archiveDirectory) parameters.add('-ArchiveDirectory="' + archiveDirectory + '"');
         if (this.shouldCook) parameters.add('-Cook');
         if (this.shouldStage) parameters.add('-Stage');
         if (this.shouldArchive) parameters.add('-Archive');
@@ -177,7 +177,7 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
         if (this.shouldPackage) parameters.add('-Package');
         if (this.skipCookingEditorContent) parameters.add('-SkipCookingEditorContent');
         if (this.usePak) parameters.add('-Pak');
-        if (this.executable) parameters.add('-UE4exe=' + executable);
+        if (this.executable) parameters.add('-UE4exe="' + executable + '"');
         if (this.noCompileEditor) parameters.add('-NoCompileEditor');
 
         super.addParameters(parameters);
@@ -353,7 +353,7 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
         parameters.add(this.clientConfig);
         parameters.add(this.targetPlatform);
 
-        if (this.project) parameters.add('-Project=' + this.project);
+        if (this.project) parameters.add('-Project="' + this.project + '"');
         if (this.usePrecompiled) parameters.add('-UsePrecompiled');
         if (!this.allowXGE) parameters.add('-NoXGE');
         if (!this.allowFASTBuild) parameters.add('-NoFASTBuild');
