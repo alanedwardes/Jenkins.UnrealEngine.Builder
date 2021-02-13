@@ -13,7 +13,7 @@ You can either:
 def builder;
 dir ('Builder') {
     git(url: 'https://github.com/alanedwardes/Jenkins.UnrealEngine.Builder.git', branch: 'main');
-    builder = load('UnrealEngine.groovy')
+    builder = load('UnrealEngine.groovy');
 }
 ```
 
@@ -39,6 +39,8 @@ def buildResult = builder.buildCookRun()
     .usePak(true)
     .archiveDirectory('Path/To/Archive)
     .run(this);
+    
+echo(buildResult.deployPath); // Prints "Path/To/WindowsNoEditor"
 ```
 
 ### Building your Game
@@ -75,6 +77,6 @@ The symbols can then be uploaded somewhere, for example Amazon S3:
 
 ```groovy
 withAWS(region: 'eu-west-1', credentials: 'MyAWSCredentials') {
-    s3Upload(bucket: 'symbols', workingDir: env.WORKSPACE + '/Symbols', includePathPattern: '**/*')
+    s3Upload(bucket: 'symbols', workingDir: env.WORKSPACE + '/Symbols', includePathPattern: '**/*');
 }
 ```
