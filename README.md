@@ -6,13 +6,13 @@ Groovy scripts for use in Jenkinsfiles to build Unreal Engine 4
 ### Loading the Library
 
 You can either:
-* Add this repo as a Git submodule
+* Add this repo as a Git submodule (pick the `v1` branch)
 * Copy `UnrealEngine.groovy` into your repository
 * Use the below snippet to checkout the repo every build:
 ```groovy
 def builder;
 dir ('Builder') {
-    git(url: 'https://github.com/alanedwardes/Jenkins.UnrealEngine.Builder.git', branch: 'main');
+    git(url: 'https://github.com/alanedwardes/Jenkins.UnrealEngine.Builder.git', branch: 'v1');
     builder = load('UnrealEngine.groovy');
 }
 ```
