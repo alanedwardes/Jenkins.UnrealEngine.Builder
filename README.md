@@ -60,6 +60,26 @@ builder.build()
     .run(this);
 ```
 
+### Building Lighting
+
+The below snippet runs lightmass for the specified map, and rebuilds reflection captures:
+
+```groovy
+builder.resavePackages()
+    .enginePath('Path/To/UnrealEngine')
+    .targetPlatform('Win64')
+    .project('Path/To/MyProject.uproject')
+    .projectOnly(true)
+    .mapsOnly(true)
+    .quality('Preview')
+    .buildLighting(true)
+    .buildReflectionCaptures(true)
+    .allowCommandletRendering(true)
+    .addMap('/Game/Maps/MyMap1')
+    .addMap('/Game/Maps/MyMap2')
+    .run(this);
+```
+
 ### Extracting Symbols
 
 On Windows, the below snippet runs the `symstore.exe` utility and extracts symbols for your deployed game files. Symstore can be found as part of the Windows Debugging Tools: https://docs.microsoft.com/en-us/windows/win32/debug/using-symstore
