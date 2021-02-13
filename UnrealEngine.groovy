@@ -373,7 +373,20 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
     * Run the command.
     */
     public def run(WorkflowScript context) {
+        List<String> parameters = [];
+        this.addParameters(parameters);
 
+        String buildScript = context.isUnix() ?
+            '"' + this.enginePath + '/Engine/Build/BatchFiles/' + this.targetPlatform + '/RunMono.sh" "' + this.enginePath + '/Engine/Binaries/DotNET/UnrealBuildTool.exe"' :
+            '"' + this.enginePath + '\\Engine\\Binaries\\DotNET\\UnrealBuildTool.exe"';
+
+        String command = buildScript + ' ' + parameters.join(' ');
+
+        if (isUnix()) {
+            sh(command);
+        } else {
+            bat(command);
+        }
     }
 }
 
