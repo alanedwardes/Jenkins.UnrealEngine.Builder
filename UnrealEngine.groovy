@@ -395,6 +395,140 @@ UnrealBuildTool build() {
     return new UnrealBuildTool();
 }
 
+class UnrealResavePackagesTool {
+    /**
+    * The path to unreal engine
+    */
+    public UnrealBuildToolGlobalOptions enginePath(String enginePath) { this.enginePath = enginePath; return this; }
+    public String enginePath;
+
+    /**
+    * Package the project for the target platform
+    */
+    public UnrealBuildTool project(String project) { this.project = project; return this; }
+    public String project;
+
+    /**
+    * Sets platforms to build for non-dedicated servers
+    */
+    public UnrealBuildCookRunTool targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
+    public String targetPlatform;
+
+    /**
+    * This option will filter the package list and only save packages that are redirectors, or that reference redirectors
+    */
+    public UnrealBuildTool fixupRedirects(Boolean fixupRedirects) { this.fixupRedirects = fixupRedirects; return this; }
+    public Boolean fixupRedirects;
+
+    /**
+    * Determine if we are building lighting for the map packages on the pass.
+    */
+    public UnrealBuildTool buildLighting(Boolean buildLighting) { this.buildLighting = buildLighting; return this; }
+    public Boolean buildLighting;
+
+    /**
+    * Determine if we are building reflection captures for the map packages on the pass.
+    */
+    public UnrealBuildTool buildReflectionCaptures(Boolean buildReflectionCaptures) { this.buildReflectionCaptures = buildReflectionCaptures; return this; }
+    public Boolean buildReflectionCaptures;
+
+    /**
+    * Rebuilds texture streaming data for all packages, rather than just maps.
+    */
+    public UnrealBuildTool buildTextureStreamingForAll(Boolean buildTextureStreamingForAll) { this.buildTextureStreamingForAll = buildTextureStreamingForAll; return this; }
+    public Boolean buildTextureStreamingForAll;
+
+    /**
+    * Determine if we are building texture streaming data for the map packages on the pass.
+    */
+    public UnrealBuildTool buildTextureStreaming(Boolean buildTextureStreaming) { this.buildTextureStreaming = buildTextureStreaming; return this; }
+    public Boolean buildTextureStreaming;
+
+    /**
+    * Only process packages containing materials.
+    */
+    public UnrealBuildTool onlyMaterials(Boolean onlyMaterials) { this.onlyMaterials = onlyMaterials; return this; }
+    public Boolean onlyMaterials;
+
+    /**
+    * Determine if we are building navigation data for the map packages on the pass.
+    */
+    public UnrealBuildTool buildNavigationData(Boolean buildNavigationData) { this.buildNavigationData = buildNavigationData; return this; }
+    public Boolean buildNavigationData;
+
+    /**
+    * Check for filtering packages by collection.
+    */
+    public UnrealBuildTool filterByCollection(String filterByCollection) { this.filterByCollection = filterByCollection; return this; }
+    public String filterByCollection;
+
+    /**
+    * Determine if we are building navigation data for the map packages on the pass.
+    */
+    public UnrealBuildTool buildHLOD(Boolean buildHLOD) { this.buildHLOD = buildHLOD; return this; }
+    public Boolean buildHLOD;
+
+    /**
+    * Default build on production.
+    */
+    public UnrealBuildTool quality(String quality) { this.quality = quality; return this; }
+    public String quality;
+
+    /**
+    * Allow for an option to restart at a given package name (in case it dies during a run, etc)
+    */
+    public UnrealBuildTool firstPackage(String firstPackage) { this.firstPackage = firstPackage; return this; }
+    public String firstPackage;
+
+    public UnrealBuildTool packageSubString(String packageSubString) { this.packageSubString = packageSubString; return this; }
+    public String packageSubString;
+
+    public def addParameters(List<String> parameters) {
+        Ensure.isSet(this.enginePath, 'enginePath');
+        Ensure.isSet(this.project, 'project');
+        Ensure.isSet(this.targetPlatform, 'targetPlatform');
+
+        parameters.add('"' + this.project + '"');
+        parameters.add('-run=resavepackages');
+        if (this.fixupRedirects) parameters.add('-FixupRedirects');
+        if (this.buildLighting) parameters.add('-buildlighting');
+        if (this.buildReflectionCaptures) parameters.add('-buildreflectioncaptures');
+        if (this.buildTextureStreamingForAll) parameters.add('-buildtexturestreamingforall');
+        if (this.buildTextureStreaming) parameters.add('-buildtexturestreaming');
+        if (this.onlyMaterials) parameters.add('-onlymaterials');
+        if (this.buildNavigationData) parameters.add('-BuildNavigationData');
+        if (this.filterByCollection) parameters.add('-FilterByCollection=' + this.filterByCollection);
+        if (this.buildHLOD) parameters.add('-BuildHLOD');
+        if (this.quality) parameters.add('-Quality=' + this.quality);
+        if (this.firstPackage) parameters.add('-FirstPackage=' + this.firstPackage);
+        if (this.packageSubString) parameters.add('-PackageSubString=' + this.packageSubString);
+    }
+
+    /**
+    * Run the command.
+    */
+    public def run(WorkflowScript context) {
+        List<String> parameters = [];
+        this.addParameters(parameters);
+
+        String buildScript = context.isUnix() ?
+            '"' + this.enginePath + '/Engine/Build/BatchFiles/' + this.targetPlatform + '/UE4Editor-Cmd"' :
+            '"' + this.enginePath + '\\Engine\\Build\\BatchFiles\\' + this.targetPlatform + '\\UE4Editor-Cmd.exe"';
+
+        String command = buildScript + ' ' + parameters.join(' ');
+
+        if (context.isUnix()) {
+            context.sh(command);
+        } else {
+            context.bat(command);
+        }
+    }
+}
+
+UnrealResavePackagesTool resavePackages() {
+    return new UnrealResavePackagesTool();
+}
+
 class Ensure {
     static void isSet(String parameter, String parameterName) {
         if (!parameter) {
