@@ -3,57 +3,57 @@ class UnrealBuildToolGlobalOptions {
     * The path to unreal engine
     */
     public UnrealBuildToolGlobalOptions enginePath(String enginePath) { this.enginePath = enginePath; return this; }
-    public String enginePath;
+    private String enginePath;
     /**
     * The amount of detail to write to the log
     */
     public UnrealBuildToolGlobalOptions verbose(Boolean verbose) { this.verbose = verbose; return this; }
-    public Boolean verbose;
+    private Boolean verbose;
     /**
     * The amount of detail to write to the log
     */
     public UnrealBuildToolGlobalOptions veryVerbose(Boolean veryVerbose) { this.veryVerbose = veryVerbose; return this; }
-    public Boolean veryVerbose;
+    private Boolean veryVerbose;
     /**
     * Disables Perforce functionality (default if not run on a build machine)
     */
     public UnrealBuildToolGlobalOptions noPerforce(Boolean noPerforce) { this.noPerforce = noPerforce; return this; }
-    public Boolean noPerforce;
+    private Boolean noPerforce;
     /**
     * Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified.
     */
     public UnrealBuildToolGlobalOptions logFileName(String logFileName) { this.logFileName = logFileName; return this; }
-    public String logFileName;
+    private String logFileName;
     /**
     * Whether to include timestamps in the log
     */
     public UnrealBuildToolGlobalOptions logTimestamps(Boolean logTimestamps) { this.logTimestamps = logTimestamps; return this; }
-    public Boolean logTimestamps;
+    private Boolean logTimestamps;
     /**
     * Whether to format messages in MsBuild format
     */
     public UnrealBuildToolGlobalOptions logFromMsBuild(Boolean logFromMsBuild) { this.logFromMsBuild = logFromMsBuild; return this; }
-    public Boolean logFromMsBuild;
+    private Boolean logFromMsBuild;
     /**
     * Whether to write progress markup in a format that can be parsed by other programs
     */
     public UnrealBuildToolGlobalOptions writeProgressMarkup(Boolean writeProgressMarkup) { this.writeProgressMarkup = writeProgressMarkup; return this; }
-    public Boolean writeProgressMarkup;
+    private Boolean writeProgressMarkup;
     /**
     * Whether to ignore the mutex
     */
     public UnrealBuildToolGlobalOptions noMutex(Boolean noMutex) { this.noMutex = noMutex; return this; }
-    public Boolean noMutex;
+    private Boolean noMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
     public UnrealBuildToolGlobalOptions waitMutex(Boolean waitMutex) { this.waitMutex = waitMutex; return this; }
-    public Boolean waitMutex;
+    private Boolean waitMutex;
     /**
     * Whether to wait for the mutex rather than aborting immediately
     */
     public UnrealBuildToolGlobalOptions remoteIni(String remoteIni) { this.remoteIni = remoteIni; return this; }
-    public String remoteIni;
+    private String remoteIni;
 
     /**
     * Add the parameters to the specified list.
@@ -75,7 +75,7 @@ class UnrealBuildToolGlobalOptions {
 }
 
 class UnrealBuildCookRunResult {
-    public String deployPath;
+    private String deployPath;
 }
 
 class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
@@ -88,73 +88,73 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
        * DebugGame
     */
     public UnrealBuildCookRunTool clientConfig(String clientConfig) { this.clientConfig = clientConfig; return this; }
-    public String clientConfig;
+    private String clientConfig;
     /**
     * Sets platforms to build for non-dedicated servers
     */
     public UnrealBuildCookRunTool targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
-    public String targetPlatform;
+    private String targetPlatform;
     /**
     * Package the project for the target platform
     */
     public UnrealBuildCookRunTool project(String project) { this.project = project; return this; }
-    public String project;
+    private String project;
 
     public UnrealBuildCookRunTool scriptsForProject(String scriptsForProject) { this.scriptsForProject = scriptsForProject; return this; }
-    public String scriptsForProject;
+    private String scriptsForProject;
     /**
     * Directory to archive the client to
     */
     public UnrealBuildCookRunTool archiveDirectory(String archiveDirectory) { this.archiveDirectory = archiveDirectory; return this; }
-    public String archiveDirectory;
+    private String archiveDirectory;
     /**
     * Determines if the build is going to use cooked data
     */
     public UnrealBuildCookRunTool shouldCook(Boolean shouldCook) { this.shouldCook = shouldCook; return this; }
-    public Boolean shouldCook;
+    private Boolean shouldCook;
     /**
     * Put this build in a stage directory
     */
     public UnrealBuildCookRunTool shouldStage(Boolean shouldStage) { this.shouldStage = shouldStage; return this; }
-    public Boolean shouldStage;
+    private Boolean shouldStage;
     /**
     * Put this build in an archive directory
     */
     public UnrealBuildCookRunTool shouldArchive(Boolean shouldArchive) { this.shouldArchive = shouldArchive; return this; }
-    public Boolean shouldArchive;
+    private Boolean shouldArchive;
     /**
     * Package for distribution of the project
     */
     public UnrealBuildCookRunTool forDistribution(Boolean forDistribution) { this.forDistribution = forDistribution; return this; }
-    public Boolean forDistribution;
+    private Boolean forDistribution;
     /**
     * If build step should be executed
     */
     public UnrealBuildCookRunTool shouldBuild(Boolean shouldBuild) { this.shouldBuild = shouldBuild; return this; }
-    public Boolean shouldBuild;
+    private Boolean shouldBuild;
     /**
     * Package the project for the target platform
     */
     public UnrealBuildCookRunTool shouldPackage(Boolean shouldPackage) { this.shouldPackage = shouldPackage; return this; }
-    public Boolean shouldPackage;
+    private Boolean shouldPackage;
     /**
     * Skips content under /Engine/Editor when cooking
     */
     public UnrealBuildCookRunTool skipCookingEditorContent(Boolean skipCookingEditorContent) { this.skipCookingEditorContent = skipCookingEditorContent; return this; }
-    public Boolean skipCookingEditorContent;
+    private Boolean skipCookingEditorContent;
     /**
     * Should use packfiles
     */
     public UnrealBuildCookRunTool usePak(Boolean usePak) { this.usePak = usePak; return this; }
-    public Boolean usePak;
+    private Boolean usePak;
     /**
     * The Unreal Engine 4 executable to use
     */
     public UnrealBuildCookRunTool executable(String executable) { this.executable = executable; return this; }
-    public String executable;
+    private String executable;
 
     public UnrealBuildCookRunTool noCompileEditor(Boolean noCompileEditor) { this.noCompileEditor = noCompileEditor; return this; }
-    public Boolean noCompileEditor;
+    private Boolean noCompileEditor;
 
     /**
     * Add the parameters to the specified list.
@@ -216,16 +216,16 @@ UnrealBuildCookRunTool buildCookRun() {
 
 class SymbolExtractorTool {
     public SymbolExtractorTool symstore(String symstore) { this.symstore = symstore; return this; }
-    public String symstore;
+    private String symstore;
 
     public SymbolExtractorTool source(String source) { this.source = source; return this; }
-    public String source;
+    private String source;
 
     public SymbolExtractorTool destination(String destination) { this.destination = destination; return this; }
-    public String destination;
+    private String destination;
 
     public SymbolExtractorTool product(String product) { this.product = product; return this; }
-    public String product;
+    private String product;
 
     public def run(WorkflowScript context) {
         Ensure.isSet(this.symstore, 'symstore');
@@ -252,7 +252,7 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
     * Sets the target to build
     */
     public UnrealBuildTool target(String target) { this.target = target; return this; }
-    public String target;
+    private String target;
     /**
     * List of client configurations:
        * Debug
@@ -262,32 +262,32 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
        * DebugGame
     */
     public UnrealBuildTool clientConfig(String clientConfig) { this.clientConfig = clientConfig; return this; }
-    public String clientConfig;
+    private String clientConfig;
     /**
     * Sets platforms to build for non-dedicated servers
     */
     public UnrealBuildTool targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
-    public String targetPlatform;
+    private String targetPlatform;
     /**
     * Package the project for the target platform
     */
     public UnrealBuildTool project(String project) { this.project = project; return this; }
-    public String project;
+    private String project;
     /**
     * Use existing static libraries for all engine modules in this target.
     */
     public UnrealBuildTool usePrecompiled(Boolean usePrecompiled) { this.usePrecompiled = usePrecompiled; return this; }
-    public Boolean usePrecompiled = false;
+    private Boolean usePrecompiled = false;
     /**
     * Whether XGE may be used.
     */
     public UnrealBuildTool allowXGE(Boolean allowXGE) { this.allowXGE = allowXGE; return this; }
-    public Boolean allowXGE = true;
+    private Boolean allowXGE = true;
     /**
     * Whether FASTBuild may be used.
     */
     public UnrealBuildTool allowFASTBuild(Boolean allowFASTBuild) { this.allowFASTBuild = allowFASTBuild; return this; }
-    public Boolean allowFASTBuild = true;
+    private Boolean allowFASTBuild = true;
     /**
     * Enables support for very fast iterative builds by caching target data. Turning this on causes Unreal Build Tool to emit
     * 'UBT Makefiles' for targets when they are built the first time. Subsequent builds will load these Makefiles and begin
@@ -310,37 +310,37 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
     * next build, we will load those cached indirect includes and check for outdatedness.
     */
     public UnrealBuildTool useUBTMakefiles(Boolean useUBTMakefiles) { this.useUBTMakefiles = useUBTMakefiles; return this; }
-    public Boolean useUBTMakefiles = true;
+    private Boolean useUBTMakefiles = true;
     /**
     * Number of actions that can be executed in parallel. If 0 then code will pick a default based on the number of cores available. Only applies to the ParallelExecutor
     */
     public UnrealBuildTool maxParallelActions(Integer maxParallelActions) { this.maxParallelActions = maxParallelActions; return this; }
-    public Integer maxParallelActions = 0;
+    private Integer maxParallelActions = 0;
     /**
     * If true, force header regeneration. Intended for the build machine.
     */
     public UnrealBuildTool forceHeaderGeneration(Boolean forceHeaderGeneration) { this.forceHeaderGeneration = forceHeaderGeneration; return this; }
-    public Boolean forceHeaderGeneration = false;
+    private Boolean forceHeaderGeneration = false;
     /**
     * If true, do not build UHT, assume it is already built.
     */
     public UnrealBuildTool doNotBuildUHT(Boolean doNotBuildUHT) { this.doNotBuildUHT = doNotBuildUHT; return this; }
-    public Boolean doNotBuildUHT = false;
+    private Boolean doNotBuildUHT = false;
     /**
     * If true, fail if any of the generated header files is out of date.
     */
     public UnrealBuildTool failIfGeneratedCodeChanges(Boolean failIfGeneratedCodeChanges) { this.failIfGeneratedCodeChanges = failIfGeneratedCodeChanges; return this; }
-    public Boolean failIfGeneratedCodeChanges = false;
+    private Boolean failIfGeneratedCodeChanges = false;
     /**
     * True if hot-reload from IDE is allowed.
     */
     public UnrealBuildTool allowHotReloadFromIDE(Boolean allowHotReloadFromIDE) { this.allowHotReloadFromIDE = allowHotReloadFromIDE; return this; }
-    public Boolean allowHotReloadFromIDE = true;
+    private Boolean allowHotReloadFromIDE = true;
     /**
     * If true, fail if any of the generated header files is out of date.
     */
     public UnrealBuildTool skipRulesCompile(Boolean skipRulesCompile) { this.skipRulesCompile = skipRulesCompile; return this; }
-    public Boolean skipRulesCompile = false;
+    private Boolean skipRulesCompile = false;
 
     /**
     * Add the parameters to the specified list.
@@ -400,106 +400,106 @@ class UnrealResavePackagesTool {
     * The path to unreal engine
     */
     public UnrealBuildToolGlobalOptions enginePath(String enginePath) { this.enginePath = enginePath; return this; }
-    public String enginePath;
+    private String enginePath;
 
     /**
     * Package the project for the target platform
     */
     public UnrealBuildTool project(String project) { this.project = project; return this; }
-    public String project;
+    private String project;
 
     /**
     * Sets platforms to build for non-dedicated servers
     */
     public UnrealBuildCookRunTool targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
-    public String targetPlatform;
+    private String targetPlatform;
 
     public UnrealBuildTool skipMaps(Boolean skipMaps) { this.skipMaps = skipMaps; return this; }
-    public Boolean skipMaps;
+    private Boolean skipMaps;
 
     public UnrealBuildTool mapsOnly(Boolean mapsOnly) { this.mapsOnly = mapsOnly; return this; }
-    public Boolean mapsOnly;
+    private Boolean mapsOnly;
     
     public UnrealBuildTool projectOnly(Boolean projectOnly) { this.projectOnly = projectOnly; return this; }
-    public Boolean projectOnly;
+    private Boolean projectOnly;
 
     public UnrealBuildTool skipDeveloperFolders(Boolean skipDeveloperFolders) { this.skipDeveloperFolders = skipDeveloperFolders; return this; }
-    public Boolean skipDeveloperFolders;
+    private Boolean skipDeveloperFolders;
 
     public UnrealBuildTool onlyDeveloperFolders(Boolean onlyDeveloperFolders) { this.onlyDeveloperFolders = onlyDeveloperFolders; return this; }
-    public Boolean onlyDeveloperFolders;
+    private Boolean onlyDeveloperFolders;
 
     /**
     * This option will filter the package list and only save packages that are redirectors, or that reference redirectors
     */
     public UnrealBuildTool fixupRedirects(Boolean fixupRedirects) { this.fixupRedirects = fixupRedirects; return this; }
-    public Boolean fixupRedirects;
+    private Boolean fixupRedirects;
 
     /**
     * Determine if we are building lighting for the map packages on the pass.
     */
     public UnrealBuildTool buildLighting(Boolean buildLighting) { this.buildLighting = buildLighting; return this; }
-    public Boolean buildLighting;
+    private Boolean buildLighting;
 
     /**
     * Determine if we are building reflection captures for the map packages on the pass.
     */
     public UnrealBuildTool buildReflectionCaptures(Boolean buildReflectionCaptures) { this.buildReflectionCaptures = buildReflectionCaptures; return this; }
-    public Boolean buildReflectionCaptures;
+    private Boolean buildReflectionCaptures;
 
     /**
     * Rebuilds texture streaming data for all packages, rather than just maps.
     */
     public UnrealBuildTool buildTextureStreamingForAll(Boolean buildTextureStreamingForAll) { this.buildTextureStreamingForAll = buildTextureStreamingForAll; return this; }
-    public Boolean buildTextureStreamingForAll;
+    private Boolean buildTextureStreamingForAll;
 
     /**
     * Determine if we are building texture streaming data for the map packages on the pass.
     */
     public UnrealBuildTool buildTextureStreaming(Boolean buildTextureStreaming) { this.buildTextureStreaming = buildTextureStreaming; return this; }
-    public Boolean buildTextureStreaming;
+    private Boolean buildTextureStreaming;
 
     /**
     * Only process packages containing materials.
     */
     public UnrealBuildTool onlyMaterials(Boolean onlyMaterials) { this.onlyMaterials = onlyMaterials; return this; }
-    public Boolean onlyMaterials;
+    private Boolean onlyMaterials;
 
     /**
     * Determine if we are building navigation data for the map packages on the pass.
     */
     public UnrealBuildTool buildNavigationData(Boolean buildNavigationData) { this.buildNavigationData = buildNavigationData; return this; }
-    public Boolean buildNavigationData;
+    private Boolean buildNavigationData;
 
     /**
     * Check for filtering packages by collection.
     */
     public UnrealBuildTool filterByCollection(String filterByCollection) { this.filterByCollection = filterByCollection; return this; }
-    public String filterByCollection;
+    private String filterByCollection;
 
     /**
     * Determine if we are building navigation data for the map packages on the pass.
     */
     public UnrealBuildTool buildHLOD(Boolean buildHLOD) { this.buildHLOD = buildHLOD; return this; }
-    public Boolean buildHLOD;
+    private Boolean buildHLOD;
 
     public UnrealBuildTool allowCommandletRendering(Boolean allowCommandletRendering) { this.allowCommandletRendering = allowCommandletRendering; return this; }
-    public Boolean allowCommandletRendering;
+    private Boolean allowCommandletRendering;
 
     /**
     * Default build on production.
     */
     public UnrealBuildTool quality(String quality) { this.quality = quality; return this; }
-    public String quality;
+    private String quality;
 
     /**
     * Allow for an option to restart at a given package name (in case it dies during a run, etc)
     */
     public UnrealBuildTool firstPackage(String firstPackage) { this.firstPackage = firstPackage; return this; }
-    public String firstPackage;
+    private String firstPackage;
 
     public UnrealBuildTool packageSubString(String packageSubString) { this.packageSubString = packageSubString; return this; }
-    public String packageSubString;
+    private String packageSubString;
 
     public UnrealBuildTool addMap(String map) { this.maps.add(map); return this; }
     public List<String> maps = [];
