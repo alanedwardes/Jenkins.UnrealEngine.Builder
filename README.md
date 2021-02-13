@@ -17,11 +17,12 @@ dir ('Builder') {
 
 ## Usage Examples
 
-1. [Cooking your Game](#cooking-your-game)
-2. [Building your Game](#building-your-game)
-3. [Building Lighting](#building-lighting)
+1. [Cooking your Game](#build-cook-run)
+2. [Building your Game](#build)
+3. [Building Lighting](#resave-packages)
+4. [Extract Symbols](#extract-symbols)
 
-### Cooking your Game
+### Build Cook Run
 
 The below snippet runs Unreal Engine 4 build tools via the command line to build, cook and package your game, similar to doing so in the Unreal Engine Editor UI:
 
@@ -47,7 +48,36 @@ def buildResult = builder.buildCookRun()
 echo(buildResult.deployPath); // Prints "Path/To/WindowsNoEditor"
 ```
 
-### Building your Game
+| Option | Required | Type | Description |
+| - | - | - | - |
+| enginePath | Yes | String | The path to Unreal Engine |
+| verbose | - | Boolean | The amount of detail to write to the log |
+| veryVerbose | - | Boolean | The amount of detail to write to the log |
+| noPerforce | - | Boolean | Disables Perforce functionality (default if not run on a build machine) |
+| logFileName | - | String | Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified |
+| logTimestamps | - | Boolean | Whether to include timestamps in the log |
+| logFromMsBuild | - | Boolean | Whether to format messages in MsBuild format |
+| writeProgressMarkup | - | Boolean | Whether to write progress markup in a format that can be parsed by other programs |
+| noMutex | - | Boolean | Whether to ignore the mutex |
+| waitMutex | - | Boolean | Whether to wait for the mutex rather than aborting immediately |
+| remoteIni | - | String | |
+| clientConfig | Yes | String | Debug, Shipping, Test, Development, DebugGame |
+| targetPlatform | Yes | String | Sets platforms to build for non-dedicated servers |
+| project | Yes | String | Package the project for the target platform |
+| scriptsForProject | - | String | - |
+| archiveDirectory | - | String | Directory to archive the client to |
+| shouldCook | - | Boolean | Determines if the build is going to use cooked data |
+| shouldStage | - | Boolean | Put this build in a stage directory |
+| shouldArchive | - | Boolean | Put this build in an archive directory |
+| forDistribution | - | Boolean | Package for distribution of the project |
+| shouldBuild | - | Boolean | If build step should be executed |
+| shouldPackage | - | Boolean | Package the project for the target platform |
+| skipCookingEditorContent | - | Boolean | Skips content under /Engine/Editor when cooking |
+| usePak | - | Boolean | Should use packfiles |
+| executable | - | String | The Unreal Engine 4 executable to use |
+| noCompileEditor | - | Boolean | - |
+
+### Build
 
 The below snippet builds the editor binaries for your chosen platform using Unreal Build Tool:
 
@@ -64,7 +94,34 @@ builder.build()
     .run(this);
 ```
 
-### Building Lighting
+| Option | Required | Type | Description |
+| - | - | - | - |
+| enginePath | Yes | String | The path to Unreal Engine |
+| verbose | - | Boolean | The amount of detail to write to the log |
+| veryVerbose | - | Boolean | The amount of detail to write to the log |
+| noPerforce | - | Boolean | Disables Perforce functionality (default if not run on a build machine) |
+| logFileName | - | String | Specifies the path to a log file to write. Note that the default mode (eg. building, generating project files) will create a log file by default if this not specified |
+| logTimestamps | - | Boolean | Whether to include timestamps in the log |
+| logFromMsBuild | - | Boolean | Whether to format messages in MsBuild format |
+| writeProgressMarkup | - | Boolean | Whether to write progress markup in a format that can be parsed by other programs |
+| noMutex | - | Boolean | Whether to ignore the mutex |
+| waitMutex | - | Boolean | Whether to wait for the mutex rather than aborting immediately |
+| remoteIni | - | String | |
+| clientConfig | Yes | String | Debug, Shipping, Test, Development, DebugGame |
+| targetPlatform | Yes | String | Sets platforms to build for non-dedicated servers |
+| project | Yes | String | Package the project for the target platform |
+| usePrecompiled | - | Boolean | Use existing static libraries for all engine modules in this target |
+| allowXGE | - | Boolean | Whether XGE may be used |
+| allowFASTBuild | - | Boolean | Whether FASTBuild may be used |
+| useUBTMakefiles | - | Boolean | Enables support for very fast iterative builds by caching target data |
+| maxParallelActions | - | Integer | Number of actions that can be executed in parallel. If 0 then code will pick a default based on the number of cores available. Only applies to the ParallelExecutor |
+| forceHeaderGeneration | - | Boolean | If true, force header regeneration. Intended for the build machine |
+| doNotBuildUHT | - | Boolean | If true, do not build UHT, assume it is already built |
+| failIfGeneratedCodeChanges | - | Boolean | If true, fail if any of the generated header files is out of date |
+| allowHotReloadFromIDE | - | Boolean | True if hot-reload from IDE is allowed |
+| skipRulesCompile | - | Boolean | |
+
+### Resave Packages
 
 The below snippet runs lightmass for the specified map, and rebuilds reflection captures:
 
@@ -83,6 +140,8 @@ builder.resavePackages()
     .addMap('/Game/Maps/MyMap2')
     .run(this);
 ```
+
+:warning: If your Windows build agent is running as a service user, this will fail when trying to initialise the GPU. The Jenkins agent must be running interactively (e.g. started by a logged in user and visible on the desktop).
 
 ### Extracting Symbols
 
