@@ -414,6 +414,21 @@ class UnrealResavePackagesTool {
     public UnrealBuildCookRunTool targetPlatform(String targetPlatform) { this.targetPlatform = targetPlatform; return this; }
     public String targetPlatform;
 
+    public UnrealBuildTool skipMaps(Boolean skipMaps) { this.skipMaps = skipMaps; return this; }
+    public Boolean skipMaps;
+
+    public UnrealBuildTool mapsOnly(Boolean mapsOnly) { this.mapsOnly = mapsOnly; return this; }
+    public Boolean mapsOnly;
+    
+    public UnrealBuildTool projectOnly(Boolean projectOnly) { this.projectOnly = projectOnly; return this; }
+    public Boolean projectOnly;
+
+    public UnrealBuildTool skipDeveloperFolders(Boolean skipDeveloperFolders) { this.skipDeveloperFolders = skipDeveloperFolders; return this; }
+    public Boolean skipDeveloperFolders;
+
+    public UnrealBuildTool onlyDeveloperFolders(Boolean onlyDeveloperFolders) { this.onlyDeveloperFolders = onlyDeveloperFolders; return this; }
+    public Boolean onlyDeveloperFolders;
+
     /**
     * This option will filter the package list and only save packages that are redirectors, or that reference redirectors
     */
@@ -468,6 +483,9 @@ class UnrealResavePackagesTool {
     public UnrealBuildTool buildHLOD(Boolean buildHLOD) { this.buildHLOD = buildHLOD; return this; }
     public Boolean buildHLOD;
 
+    public UnrealBuildTool allowCommandletRendering(Boolean allowCommandletRendering) { this.allowCommandletRendering = allowCommandletRendering; return this; }
+    public Boolean allowCommandletRendering;
+
     /**
     * Default build on production.
     */
@@ -483,25 +501,35 @@ class UnrealResavePackagesTool {
     public UnrealBuildTool packageSubString(String packageSubString) { this.packageSubString = packageSubString; return this; }
     public String packageSubString;
 
+    public UnrealBuildTool addMap(String map) { this.maps.add(map); return this; }
+    public List<String> maps = new List<String>();
+
     public def addParameters(List<String> parameters) {
         Ensure.isSet(this.enginePath, 'enginePath');
         Ensure.isSet(this.project, 'project');
         Ensure.isSet(this.targetPlatform, 'targetPlatform');
 
         parameters.add('"' + this.project + '"');
-        parameters.add('-run=resavepackages');
+        parameters.add('-run=ResavePackages');
+        if (this.skipMaps) parameters.add('-SkipMaps');
+        if (this.mapsOnly) parameters.add('-MapsOnly');
+        if (this.projectOnly) parameters.add('-ProjectOnly');
+        if (this.skipDeveloperFolders) parameters.add('-SkipDeveloperFolders');
+        if (this.onlyDeveloperFolders) parameters.add('-OnlyDeveloperFolders');
         if (this.fixupRedirects) parameters.add('-FixupRedirects');
-        if (this.buildLighting) parameters.add('-buildlighting');
-        if (this.buildReflectionCaptures) parameters.add('-buildreflectioncaptures');
-        if (this.buildTextureStreamingForAll) parameters.add('-buildtexturestreamingforall');
-        if (this.buildTextureStreaming) parameters.add('-buildtexturestreaming');
-        if (this.onlyMaterials) parameters.add('-onlymaterials');
+        if (this.buildLighting) parameters.add('-BuildLighting');
+        if (this.buildReflectionCaptures) parameters.add('-BuildReflectionCaptures');
+        if (this.buildTextureStreamingForAll) parameters.add('-BuildTextureStreamingForAll');
+        if (this.buildTextureStreaming) parameters.add('-BuildTextureStreaming');
+        if (this.onlyMaterials) parameters.add('-OnlyMaterials');
         if (this.buildNavigationData) parameters.add('-BuildNavigationData');
         if (this.filterByCollection) parameters.add('-FilterByCollection=' + this.filterByCollection);
         if (this.buildHLOD) parameters.add('-BuildHLOD');
+        if (this.allowCommandletRendering) parameters.add('-AllowCommandletRendering');
         if (this.quality) parameters.add('-Quality=' + this.quality);
         if (this.firstPackage) parameters.add('-FirstPackage=' + this.firstPackage);
         if (this.packageSubString) parameters.add('-PackageSubString=' + this.packageSubString);
+        if (this.maps.size() > 0) parameters.add('-Map="' + this.maps.join('"+"') + '"');
     }
 
     /**
