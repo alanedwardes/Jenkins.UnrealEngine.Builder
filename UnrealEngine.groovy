@@ -379,7 +379,7 @@ class UnrealBuildTool extends UnrealBuildToolGlobalOptions {
 
         String buildScript = context.isUnix() ?
             '"' + this.enginePath + '/Engine/Build/BatchFiles/' + this.targetPlatform + '/RunMono.sh" "' + this.enginePath + '/Engine/Binaries/DotNET/UnrealBuildTool.exe"' :
-            '"' + this.enginePath + '\\Engine\\Binaries\\DotNET\\UnrealBuildTool.exe"';
+            '"' + this.enginePath + '\\Engine\\Binaries\\DotNET\\UnrealBuildTool\\UnrealBuildTool.exe"';
 
         String command = buildScript + ' ' + parameters.join(' ');
 
