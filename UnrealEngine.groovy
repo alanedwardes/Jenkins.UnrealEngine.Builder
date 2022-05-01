@@ -201,11 +201,9 @@ class UnrealBuildCookRunTool extends UnrealBuildToolGlobalOptions {
         } else {
             context.bat(command);
         }
-
-        String noEditorPath = (this.targetPlatform.startsWith('Win') ? 'Windows' : this.targetPlatform) + 'NoEditor';
-
+        
         UnrealBuildCookRunResult result = new UnrealBuildCookRunResult();
-        result.deployPath = this.archiveDirectory + '/' + noEditorPath;
+        result.deployPath = this.archiveDirectory;
         return result;
     }
 }
